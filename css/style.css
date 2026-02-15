@@ -44,6 +44,20 @@ h1 {
   cursor: pointer;
 }
 
+.reader-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  padding: 15px 0;
+  border-bottom: 1px solid #ccc;
+  z-index: 1000;
+}
+
+main.container {
+  margin-top: 150px; /* ヘッダー分の余白 */
+}
 
 .gacha-button:hover {
   opacity: 0.85;
