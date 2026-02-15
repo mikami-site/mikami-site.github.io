@@ -39,7 +39,23 @@
 <main class="container">
 
 <h1>指先に灯る温度</h1>
+<div class="reader-controls">
 
+  <div>
+    フォント：
+    <button onclick="setFont('gothic')">ゴシック</button>
+    <button onclick="setFont('mincho')">明朝</button>
+  </div>
+
+  <div style="margin-top:10px;">
+    文字サイズ：
+    <button onclick="changeSize(-2)">−</button>
+    <span id="fontSizeDisplay">18</span>px
+    <button onclick="changeSize(2)">＋</button>
+  </div>
+
+</div>
+  
 <div class="page-nav">
   <button onclick="showPage(1)">1</button>
   <button onclick="showPage(2)">2</button>
@@ -861,7 +877,7 @@
 </article>
 
 <p style="margin-top:40px;">
-  <a href="../list.html">← 一覧へ戻る</a>
+
 </p>
 
 </main>
