@@ -33,6 +33,18 @@ h1 {
   cursor: pointer;
 }
 
+.reader-controls {
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.reader-controls button {
+  margin: 0 5px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+
 .gacha-button:hover {
   opacity: 0.85;
 }
