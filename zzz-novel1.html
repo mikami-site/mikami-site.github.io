@@ -39,8 +39,8 @@
 <main class="container">
 
 <h1>指先に灯る温度</h1>
+<!-- 読書設定 -->
 <div class="reader-controls">
-
   <div>
     フォント：
     <button onclick="setFont('gothic')">ゴシック</button>
@@ -53,18 +53,18 @@
     <span id="fontSizeDisplay">18</span>px
     <button onclick="changeSize(2)">＋</button>
   </div>
-<br>
 </div>
-  
+
+<!-- ページ番号 -->
 <div class="page-nav">
   <button onclick="showPage(1)">1</button>
   <button onclick="showPage(2)">2</button>
   <button onclick="showPage(3)">3</button>
   <button onclick="showPage(4)">4</button>
-  <button onclick="showPage(5)">5</button>
 </div>
 
 <article>
+
 
 <div id="page1" class="novel-section">
 　対ホロウ六課が手を焼くエーテリアスが現れた――柳からそんな相談を受けたのは、朝の光が穏やかに差し込む早朝の適当観だった。鳴り響くスマホに起こされて、寝ぼけたまま通話を繋げたアキラの耳に、まず飛び込んできたのがその情報だった。
@@ -883,7 +883,13 @@
 </main>
 
 <script>
+let currentSize = 18;
+let currentPage = 1;
+
+/* ページ切り替え */
 function showPage(pageNumber) {
+  currentPage = pageNumber;
+
   const sections = document.querySelectorAll('.novel-section');
   const buttons = document.querySelectorAll('.page-nav button');
 
@@ -892,31 +898,17 @@ function showPage(pageNumber) {
 
   document.getElementById('page' + pageNumber).style.display = 'block';
   buttons[pageNumber - 1].classList.add('active');
-}
-  let currentSize = 18;
 
-function applySettings() {
-  const novel = document.querySelector('.novel-section[style*="block"]') 
-               || document.querySelector('.novel-section');
-
-  if (!novel) return;
-
-  novel.style.fontSize = currentSize + 'px';
-  document.getElementById('fontSizeDisplay').textContent = currentSize;
-
-  const savedFont = localStorage.getItem('fontType');
-  if (savedFont === 'mincho') {
-    novel.style.fontFamily = '"Hiragino Mincho ProN", serif';
-  } else {
-    novel.style.fontFamily = 'system-ui, sans-serif';
-  }
+  applySettings();
 }
 
+/* フォント変更 */
 function setFont(type) {
   localStorage.setItem('fontType', type);
   applySettings();
 }
 
+/* 文字サイズ変更 */
 function changeSize(amount) {
   currentSize += amount;
   if (currentSize < 12) currentSize = 12;
@@ -926,16 +918,30 @@ function changeSize(amount) {
   applySettings();
 }
 
-// 初期読み込み
+/* 設定適用 */
+function applySettings() {
+  const activeSection = document.getElementById('page' + currentPage);
+  if (!activeSection) return;
+
+  const savedFont = localStorage.getItem('fontType');
+
+  if (savedFont === 'mincho') {
+    activeSection.style.fontFamily = '"Hiragino Mincho ProN", serif';
+  } else {
+    activeSection.style.fontFamily = 'system-ui, sans-serif';
+  }
+
+  activeSection.style.fontSize = currentSize + 'px';
+  document.getElementById('fontSizeDisplay').textContent = currentSize;
+}
+
+/* 初期読み込み */
 window.onload = function() {
   const savedSize = localStorage.getItem('fontSize');
   if (savedSize) currentSize = parseInt(savedSize);
 
-  applySettings();
+  showPage(1);
 };
-
-// 初期表示
-showPage(1);
 </script>
 
 </body>
