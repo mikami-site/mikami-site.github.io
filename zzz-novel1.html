@@ -53,7 +53,7 @@
     <span id="fontSizeDisplay">18</span>px
     <button onclick="changeSize(2)">＋</button>
   </div>
-
+<br>
 </div>
   
 <div class="page-nav">
@@ -893,6 +893,46 @@ function showPage(pageNumber) {
   document.getElementById('page' + pageNumber).style.display = 'block';
   buttons[pageNumber - 1].classList.add('active');
 }
+  let currentSize = 18;
+
+function applySettings() {
+  const novel = document.querySelector('.novel-section[style*="block"]') 
+               || document.querySelector('.novel-section');
+
+  if (!novel) return;
+
+  novel.style.fontSize = currentSize + 'px';
+  document.getElementById('fontSizeDisplay').textContent = currentSize;
+
+  const savedFont = localStorage.getItem('fontType');
+  if (savedFont === 'mincho') {
+    novel.style.fontFamily = '"Hiragino Mincho ProN", serif';
+  } else {
+    novel.style.fontFamily = 'system-ui, sans-serif';
+  }
+}
+
+function setFont(type) {
+  localStorage.setItem('fontType', type);
+  applySettings();
+}
+
+function changeSize(amount) {
+  currentSize += amount;
+  if (currentSize < 12) currentSize = 12;
+  if (currentSize > 36) currentSize = 36;
+
+  localStorage.setItem('fontSize', currentSize);
+  applySettings();
+}
+
+// 初期読み込み
+window.onload = function() {
+  const savedSize = localStorage.getItem('fontSize');
+  if (savedSize) currentSize = parseInt(savedSize);
+
+  applySettings();
+};
 
 // 初期表示
 showPage(1);
