@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>作品タイトル</title>
+<link rel="stylesheet" href="../css/style.css">
+
+<style>
+.page-nav {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.page-nav button {
+  margin: 0 5px;
+  padding: 5px 12px;
+  border: 1px solid #333;
+  background: #fff;
+  cursor: pointer;
+}
+
+.page-nav button.active {
+  background: #333;
+  color: #fff;
+}
+
+.novel-section {
+  display: none;
+  text-align: left;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+</style>
+
+</head>
+<body>
+
+<main class="container">
+
+<h1>作品タイトル</h1>
+
+<div class="page-nav">
+  <button onclick="showPage(1)">1</button>
+  <button onclick="showPage(2)">2</button>
+  <button onclick="showPage(3)">3</button>
+  <button onclick="showPage(4)">4</button>
+</div>
+
+<article>
+
+<div id="page1" class="novel-section">
+ここに1ページ目の本文を書きます。
+</div>
+
+<div id="page2" class="novel-section">
+ここに2ページ目の本文を書きます。
+</div>
+
+<div id="page3" class="novel-section">
+ここに3ページ目の本文を書きます。
+</div>
+
+<div id="page4" class="novel-section">
+ここに4ページ目の本文を書きます。
+</div>
+
+</article>
+
+<p style="margin-top:40px;">
+  <a href="../list.html">← 一覧へ戻る</a>
+</p>
+
+</main>
+
+<script>
+function showPage(pageNumber) {
+  const sections = document.querySelectorAll('.novel-section');
+  const buttons = document.querySelectorAll('.page-nav button');
+
+  sections.forEach(section => section.style.display = 'none');
+  buttons.forEach(button => button.classList.remove('active'));
+
+  document.getElementById('page' + pageNumber).style.display = 'block';
+  buttons[pageNumber - 1].classList.add('active');
+}
+
+// 初期表示
+showPage(1);
+</script>
+
+</body>
+</html>
