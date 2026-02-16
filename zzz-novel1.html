@@ -894,7 +894,15 @@ function showPage(pageNumber) {
   pages.forEach(p => p.style.display = 'none');
 
   document.getElementById('page' + pageNumber).style.display = 'block';
+
   applySettings();
+
+  const headerHeight = document.querySelector('.reader-header').offsetHeight;
+
+  window.scrollTo({
+    top: headerHeight,
+    behavior: "smooth"
+  });
 }
 
 function setFont(type) {
