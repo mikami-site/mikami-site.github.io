@@ -1,10 +1,25 @@
+/* =====================
+   基本設定
+===================== */
+
 body {
   margin: 0;
+  padding: 0;
+  background: #ffffff;
+  color: #222;
   font-family: serif;
   line-height: 1.9;
-  background: #fff;
-  color: #222;
+  letter-spacing: 0.03em;
 }
+
+h1, h2 {
+  font-weight: normal;
+  margin: 0;
+}
+
+/* =====================
+   中央レイアウト（ガチャ・認証）
+===================== */
 
 .center {
   display: flex;
@@ -12,61 +27,167 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  text-align: center;
 }
 
-main {
+/* =====================
+   ボタン（共通）
+===================== */
+
+button {
+  background: none;
+  border: 1px solid #999;
+  padding: 4px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+button:hover {
+  opacity: 0.6;
+}
+
+.main-button {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+/* =====================
+   ガチャ小説ページ
+===================== */
+
+.novel-single {
   max-width: 720px;
   margin: 120px auto 60px;
   padding: 0 20px;
-}
-
-.novel-single {
-  max-width: 680px;
-  margin: 100px auto;
-  padding: 0 20px;
-}
-
-.page {
   font-size: 17px;
 }
+
+.bottom-nav {
+  text-align: center;
+  margin: 60px 0;
+}
+
+/* =====================
+   特別小説ヘッダー（ミニマル）
+===================== */
 
 .novel-header {
   position: fixed;
   top: 0;
   width: 100%;
   background: #fff;
-  padding: 15px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #ddd;
+  z-index: 1000;
+}
+
+.header-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 18px 20px 14px;
   text-align: center;
 }
 
-.controls button,
-.pagination button,
-.bottom-nav button,
-.main-button {
-  margin: 5px;
-  padding: 6px 10px;
-  font-size: 14px;
+.novel-title {
+  font-size: 18px;
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
 }
 
-.pagination span {
-  margin: 0 6px;
+/* ページナビ */
+
+.nav-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.page-numbers span {
+  margin: 0 4px;
   cursor: pointer;
 }
 
-.bottom-nav {
-  text-align: center;
-  margin: 40px 0;
+.page-numbers span:hover {
+  opacity: 0.6;
 }
 
-/* 📱 スマホ最適化 */
+/* コントロール */
+
+.controls {
+  font-size: 13px;
+}
+
+.controls button {
+  margin: 0 4px;
+  font-size: 13px;
+  padding: 2px 6px;
+}
+
+/* =====================
+   特別小説本文
+===================== */
+
+#novelText {
+  max-width: 720px;
+  margin: 0 auto 80px;
+  padding: 160px 20px 0;
+}
+
+.page {
+  font-size: 17px;
+}
+
+/* 下部ページ送り */
+
+.bottom-nav button {
+  margin: 0 10px;
+}
+
+/* =====================
+   入力フォーム
+===================== */
+
+input[type="password"] {
+  padding: 6px;
+  font-size: 14px;
+  margin-top: 10px;
+  border: 1px solid #aaa;
+}
+
+/* =====================
+   スマホ最適化
+===================== */
+
 @media (max-width: 600px) {
-  main, .novel-single {
-    margin-top: 160px;
+
+  body {
+    line-height: 2;
   }
 
-  .page {
+  .novel-single {
+    margin: 100px auto 60px;
     font-size: 18px;
-    line-height: 2;
+  }
+
+  .header-inner {
+    padding: 20px 14px 12px;
+  }
+
+  .novel-title {
+    font-size: 16px;
+  }
+
+  #novelText {
+    padding-top: 190px;
+  }
+
+  .controls {
+    font-size: 12px;
+  }
+
+  button {
+    font-size: 13px;
   }
 }
