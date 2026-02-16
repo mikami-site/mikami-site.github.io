@@ -2,64 +2,43 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>小説タイトル</title>
-<link rel="stylesheet" href="style.css">
+<title>特別小説</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<header class="reader-header">
-  <div class="header-inner">
+<div id="passwordScreen" class="center">
+  <h2>パスワードを入力してください</h2>
+  <input type="password" id="passwordInput">
+  <button onclick="checkPassword()">入室</button>
+</div>
 
-    <h1 class="novel-title">小説タイトル</h1>
+<div id="novelContent" style="display:none;">
 
-    <div class="reader-controls">
-      フォント：
-      <button onclick="setFont('gothic')">ゴシック</button>
-      <button onclick="setFont('mincho')">明朝</button>
+<header>
+  <h1>特別小説タイトル</h1>
 
-      &nbsp;&nbsp;
+  <div class="controls">
+    フォント:
+    <button onclick="setFont('gothic')">ゴシック</button>
+    <button onclick="setFont('mincho')">明朝</button>
 
-      文字サイズ：
-      <button onclick="changeSize(-2)">−</button>
-      <span id="fontSizeDisplay">18</span>px
-      <button onclick="changeSize(2)">＋</button>
+    サイズ:
+    <button onclick="changeSize(-2)">−</button>
+    <button onclick="changeSize(2)">＋</button>
+  </div>
 
-      &nbsp;&nbsp;
-
-      表示：
-      <button onclick="toggleWritingMode()">横 / 縦</button>
-    </div>
-
-    <div class="page-nav">
-      <button onclick="prevPage()">← 前へ</button>
-      <span id="pageIndicator">1</span>
-      <button onclick="nextPage()">次へ →</button>
-    </div>
-
+  <div class="pagination">
+    <button onclick="changePage(-1)">←</button>
+    <span id="pageIndicator">1 / 5</span>
+    <button onclick="changePage(1)">→</button>
   </div>
 </header>
 
-<main class="container">
+<main id="novelText"></main>
 
-  <div id="page1" class="novel-section">
-    ここに本文１を書きます。
-  </div>
-
-  <div id="page2" class="novel-section">
-    ここに本文２を書きます。
-  </div>
-
-  <div id="page3" class="novel-section">
-    ここに本文３を書きます。
-  </div>
-
-  <div id="page4" class="novel-section">
-    ここに本文４を書きます。
-  </div>
-
-</main>
+</div>
 
 <script src="script.js"></script>
 </body>
