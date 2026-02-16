@@ -49,13 +49,17 @@ let fontSize = 17;
 
 window.addEventListener("DOMContentLoaded", function () {
 
-// 🔒 認証チェック
-if (window.location.pathname.includes("zzz-novel00.html")) {
-  if (localStorage.getItem("auth") !== "ok") {
-    location.href = "enter.html";
-  }
-}
+// 🔒 認証チェック（特別小説だけ）
+window.addEventListener("DOMContentLoaded", function () {
 
+  // ★ 特別小説ページのときだけ実行
+  if (window.location.pathname.includes("zzz-novel00.html")) {
+
+    if (localStorage.getItem("auth") !== "ok") {
+      location.href = "enter.html";
+      return;
+    }
+  }
 
   const pageElements = document.querySelectorAll(".page");
   pages = Array.from(pageElements);
