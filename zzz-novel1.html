@@ -2,47 +2,64 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>小説タイトル</title>
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <header class="reader-header">
-  <h1 class="title">小説タイトル</h1>
+  <div class="header-inner">
 
-  <div class="controls">
-    <button onclick="changeFont('serif')">明朝</button>
-    <button onclick="changeFont('sans')">ゴシック</button>
-    <button onclick="toggleWritingMode()">横/縦</button>
-  </div>
+    <h1 class="novel-title">小説タイトル</h1>
 
-  <div class="page-nav">
-    <button onclick="prevPage()">←</button>
-    <button class="page-btn active" onclick="showPage(1)">1</button>
-    <button class="page-btn" onclick="showPage(2)">2</button>
-    <button class="page-btn" onclick="showPage(3)">3</button>
-    <button class="page-btn" onclick="showPage(4)">4</button>
-    <button onclick="nextPage()">→</button>
+    <div class="reader-controls">
+      フォント：
+      <button onclick="setFont('gothic')">ゴシック</button>
+      <button onclick="setFont('mincho')">明朝</button>
+
+      &nbsp;&nbsp;
+
+      文字サイズ：
+      <button onclick="changeSize(-2)">−</button>
+      <span id="fontSizeDisplay">18</span>px
+      <button onclick="changeSize(2)">＋</button>
+
+      &nbsp;&nbsp;
+
+      表示：
+      <button onclick="toggleWritingMode()">横 / 縦</button>
+    </div>
+
+    <div class="page-nav">
+      <button onclick="prevPage()">← 前へ</button>
+      <span id="pageIndicator">1</span>
+      <button onclick="nextPage()">次へ →</button>
+    </div>
+
   </div>
 </header>
 
-<div class="container">
-  <div class="page active" id="page1">
-    <p>ここに1ページ目の本文を書きます。</p>
+<main class="container">
+
+  <div id="page1" class="novel-section">
+    ここに本文１を書きます。
   </div>
 
-  <div class="page" id="page2">
-    <p>ここに2ページ目の本文を書きます。</p>
+  <div id="page2" class="novel-section">
+    ここに本文２を書きます。
   </div>
 
-  <div class="page" id="page3">
-    <p>ここに3ページ目の本文を書きます。</p>
+  <div id="page3" class="novel-section">
+    ここに本文３を書きます。
   </div>
 
-  <div class="page" id="page4">
-    <p>ここに4ページ目の本文を書きます。</p>
+  <div id="page4" class="novel-section">
+    ここに本文４を書きます。
   </div>
-</div>
+
+</main>
 
 <script src="script.js"></script>
 </body>
