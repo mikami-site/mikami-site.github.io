@@ -1,15 +1,17 @@
 // 🎲 ガチャ
 function drawNovel() {
   const novels = [
-    "novels/novel1.html",
-    "novels/novel2.html",
-    "novels/novel3.html",
-    "novels/novel4.html",
-    "novels/novel5.html"
+    "/novels/novel1.html",
+    "/novels/novel2.html",
+    "/novels/novel3.html",
+    "/novels/novel4.html",
+    "/novels/novel5.html"
   ];
+
   const random = Math.floor(Math.random() * novels.length);
   location.href = novels[random];
 }
+
 
 // 🔐 パスワード
 function checkPassword() {
