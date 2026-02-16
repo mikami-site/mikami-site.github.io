@@ -15,16 +15,17 @@ body {
 }
 
 .header-inner {
-  max-width: 800px;
+  max-width: 500px;
   margin: 0 auto;
   padding: 15px;
   text-align: center;
 }
 
 .novel-title {
-  margin: 0 0 10px 0;
-  font-size: 1.5rem;
-  font-weight: 600;
+  margin: 0 0 8px 0;
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
 }
 
 .reader-controls {
