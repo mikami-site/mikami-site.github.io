@@ -38,11 +38,29 @@ const pages = [
 ];
 
 function loadPage() {
-  document.getElementById("novelText").innerHTML = pages[currentPage - 1];
-  document.getElementById("pageIndicator").textContent =
-    currentPage + " / 5";
+  document.getElementById("novelText").innerHTML =
+    "<p>" + pages[currentPage - 1] + "</p>";
+
+  updateDots();
   window.scrollTo(0, 0);
 }
+
+function updateDots() {
+  const dotContainer = document.getElementById("pageDots");
+  dotContainer.innerHTML = "";
+
+  for (let i = 1; i <= pages.length; i++) {
+    const dot = document.createElement("div");
+    dot.classList.add("dot");
+
+    if (i === currentPage) {
+      dot.classList.add("active");
+    }
+
+    dotContainer.appendChild(dot);
+  }
+}
+
 
 function changePage(direction) {
   currentPage += direction;
