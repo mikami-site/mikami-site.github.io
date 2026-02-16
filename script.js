@@ -67,3 +67,23 @@ function changeSize(amount) {
   document.getElementById("novelText").style.fontSize =
     fontSize + "px";
 }
+
+/* ===== ページ丸 ===== */
+.dots {
+  display: inline-flex;
+  gap: 8px;
+  margin: 0 10px;
+  vertical-align: middle;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ccc;
+  transition: 0.2s;
+}
+
+.dot.active {
+  background: #222;
+}
