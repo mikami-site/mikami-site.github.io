@@ -936,6 +936,18 @@ window.onload = function() {
   showPage(1);
 };
 
+function adjustLayout() {
+  const header = document.querySelector('.reader-header');
+  const container = document.querySelector('.container');
+  const headerHeight = header.offsetHeight;
+
+  container.style.marginTop = headerHeight + 'px';
+}
+
+window.addEventListener('load', adjustLayout);
+window.addEventListener('resize', adjustLayout);
+
+  
 </script>
 
 
