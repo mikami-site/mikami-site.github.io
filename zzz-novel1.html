@@ -2,252 +2,48 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>小説タイトル</title>
-
-<style>
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  background: #ffffff;
-}
-
-/* ===== ヘッダー ===== */
-.reader-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid #ddd;
-  z-index: 1000;
-}
-
-.header-inner {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 15px;
-  text-align: center;
-}
-
-.novel-title {
-  margin: 0 0 8px 0;
-  font-size: 1.4rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-}
-
-/* 読書設定 */
-.reader-controls {
-  margin-bottom: 8px;
-  font-size: 0.9rem;
-}
-
-.reader-controls button,
-.page-nav button {
-  margin: 3px;
-  padding: 4px 8px;
-  cursor: pointer;
-  border: 1px solid #ccc;
-  background: #f8f8f8;
-}
-
-.reader-controls button:hover,
-.page-nav button:hover {
-  background: #eaeaea;
-}
-
-/* ===== 本文 ===== */
-.container {
-  max-width: 800px;
-  margin: 0 auto 40px auto;
-  padding: 0 20px;
-}
-
-.novel-section {
-  display: none;
-  line-height: 1.9;
-  font-size: 18px;
-  white-space: pre-wrap;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <header class="reader-header">
-  <div class="header-inner">
+  <h1 class="title">小説タイトル</h1>
 
-    <h1 class="novel-title">小説タイトル</h1>
+  <div class="controls">
+    <button onclick="changeFont('serif')">明朝</button>
+    <button onclick="changeFont('sans')">ゴシック</button>
+    <button onclick="toggleWritingMode()">横/縦</button>
+  </div>
 
-    <div class="reader-controls">
-      フォント：
-      <button onclick="setFont('gothic')">ゴシック</button>
-      <button onclick="setFont('mincho')">明朝</button>
-
-      &nbsp;&nbsp;
-
-      文字サイズ：
-      <button onclick="changeSize(-2)">−</button>
-      <span id="fontSizeDisplay">18</span>px
-      <button onclick="changeSize(2)">＋</button>
-    </div>
-
-<div class="page-nav">
-  <button onclick="prevPage()">← 前へ</button>
-  <span id="pageIndicator">1</span>
-  <button onclick="nextPage()">次へ →</button>
-</div>
-
+  <div class="page-nav">
+    <button onclick="prevPage()">←</button>
+    <button class="page-btn active" onclick="showPage(1)">1</button>
+    <button class="page-btn" onclick="showPage(2)">2</button>
+    <button class="page-btn" onclick="showPage(3)">3</button>
+    <button class="page-btn" onclick="showPage(4)">4</button>
+    <button onclick="nextPage()">→</button>
   </div>
 </header>
 
-<main class="container">
-
-  <div id="page1" class="novel-section">
-ここに本文１を書きます。
-
-改行はそのまま反映されます。
+<div class="container">
+  <div class="page active" id="page1">
+    <p>ここに1ページ目の本文を書きます。</p>
   </div>
 
-  <div id="page2" class="novel-section">
-ここに本文２を書きます。
+  <div class="page" id="page2">
+    <p>ここに2ページ目の本文を書きます。</p>
   </div>
 
-  <div id="page3" class="novel-section">
-ここに本文３を書きます。
+  <div class="page" id="page3">
+    <p>ここに3ページ目の本文を書きます。</p>
   </div>
 
-  <div id="page4" class="novel-section">
-ここに本文４を書きます。
+  <div class="page" id="page4">
+    <p>ここに4ページ目の本文を書きます。</p>
   </div>
+</div>
 
-</main>
-
-<script>
-
-let currentSize = 18;
-let currentPage = 1;
-
-/* ===== ページ切替 ===== */
-function showPage(pageNumber) {
-  currentPage = pageNumber;
-
-  const pages = document.querySelectorAll('.novel-section');
-  pages.forEach(p => p.style.display = 'none');
-
-  const target = document.getElementById('page' + pageNumber);
-  if (target) {
-    target.style.display = 'block';
-  }
-
-  updateActiveButton();
-  applySettings();
-  adjustLayout();
-
-  window.scrollTo(0, 0);
-}
-
-/* ===== ページボタンハイライト ===== */
-function updateActiveButton() {
-  const buttons = document.querySelectorAll('.page-nav button');
-  buttons.forEach((btn, index) => {
-    btn.classList.remove('active');
-    if (index === currentPage - 1) {
-      btn.classList.add('active');
-    }
-  });
-}
-
-/* ===== フォント設定 ===== */
-function setFont(type) {
-  localStorage.setItem('fontType', type);
-  applySettings();
-  adjustLayout();
-}
-
-/* ===== 文字サイズ変更 ===== */
-function changeSize(amount) {
-  currentSize += amount;
-
-  if (currentSize < 12) currentSize = 12;
-  if (currentSize > 36) currentSize = 36;
-
-  localStorage.setItem('fontSize', currentSize);
-  applySettings();
-  adjustLayout();
-}
-
-/* ===== 横書き・縦書き切替 ===== */
-function toggleWritingMode() {
-  const visiblePage = document.querySelector('.novel-section[style*="block"]');
-  if (!visiblePage) return;
-
-  visiblePage.classList.toggle('vertical-mode');
-
-  const isVertical = visiblePage.classList.contains('vertical-mode');
-  localStorage.setItem('writingMode', isVertical ? 'vertical' : 'horizontal');
-
-  adjustLayout();
-}
-
-/* ===== 設定適用 ===== */
-function applySettings() {
-
-  const visiblePage = document.querySelector('.novel-section[style*="block"]');
-  if (!visiblePage) return;
-
-  visiblePage.style.fontSize = currentSize + 'px';
-
-  const sizeDisplay = document.getElementById('fontSizeDisplay');
-  if (sizeDisplay) {
-    sizeDisplay.textContent = currentSize;
-  }
-
-  const savedFont = localStorage.getItem('fontType');
-
-  if (savedFont === 'mincho') {
-    visiblePage.style.fontFamily =
-      '"Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif';
-  } else {
-    visiblePage.style.fontFamily =
-      '"Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif';
-  }
-
-  const savedWriting = localStorage.getItem('writingMode');
-  if (savedWriting === 'vertical') {
-    visiblePage.classList.add('vertical-mode');
-  } else {
-    visiblePage.classList.remove('vertical-mode');
-  }
-}
-
-/* ===== ヘッダー高さ自動調整 ===== */
-function adjustLayout() {
-  const header = document.querySelector('.reader-header');
-  const container = document.querySelector('.container');
-
-  if (!header || !container) return;
-
-  const headerHeight = header.offsetHeight;
-  container.style.marginTop = headerHeight + 'px';
-}
-
-/* ===== 初期化 ===== */
-window.addEventListener('load', function() {
-
-  const savedSize = localStorage.getItem('fontSize');
-  if (savedSize) {
-    currentSize = parseInt(savedSize);
-  }
-
-  showPage(1);
-});
-
-window.addEventListener('resize', adjustLayout);
-
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
