@@ -919,12 +919,13 @@ function applySettings() {
   document.getElementById('fontSizeDisplay').textContent = currentSize;
 
   const savedFont = localStorage.getItem('fontType');
+
   if (savedFont === 'mincho') {
     visiblePage.style.fontFamily =
-  '"Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif';
-  }
+      '"Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif';
+  } else {
     visiblePage.style.fontFamily =
-  '"Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif';
+      '"Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif';
   }
 }
 
