@@ -10,7 +10,7 @@
 
 <div id="passwordScreen" class="center">
   <h2>パスワードを入力してください</h2>
-  <input type="password" id="passwordInput">
+  <input type="password" id="passwordInput" onkeydown="handleKey(event)">
   <button onclick="checkPassword()">OK</button>
 </div>
 
