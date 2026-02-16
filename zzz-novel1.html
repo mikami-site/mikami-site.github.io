@@ -94,12 +94,11 @@ body {
       <button onclick="changeSize(2)">＋</button>
     </div>
 
-    <div class="page-nav">
-      <button onclick="showPage(1)">1</button>
-      <button onclick="showPage(2)">2</button>
-      <button onclick="showPage(3)">3</button>
-      <button onclick="showPage(4)">4</button>
-    </div>
+<div class="page-nav">
+  <button onclick="prevPage()">← 前へ</button>
+  <span id="pageIndicator">1</span>
+  <button onclick="nextPage()">次へ →</button>
+</div>
 
   </div>
 </header>
