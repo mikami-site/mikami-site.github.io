@@ -13,7 +13,7 @@ function drawNovel() {
 
 // ===== パスワード =====
 function checkPassword() {
-  const pass = "yourpassword"; // ここを変更
+  const pass = "0719"; // ここを変更
   const input = document.getElementById("passwordInput").value;
 
   if (input === pass) {
