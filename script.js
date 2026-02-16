@@ -27,23 +27,27 @@ function checkPassword() {
 
 // ===== 特別小説ページ制御 =====
 let currentPage = 1;
-let fontSize = 16;
+let pages = [];
 
-const pages = [
-  "1ページ目本文...",
-  "2ページ目本文...",
-  "3ページ目本文...",
-  "4ページ目本文...",
-  "5ページ目本文..."
-];
+window.addEventListener("DOMContentLoaded", function () {
+  const pageElements = document.querySelectorAll(".page");
+  pages = Array.from(pageElements);
+
+  pages.forEach(p => p.style.display = "none");
+
+  if (pages.length > 0) {
+    loadPage();
+  }
+});
 
 function loadPage() {
-  document.getElementById("novelText").innerHTML =
-    "<p>" + pages[currentPage - 1] + "</p>";
+  pages.forEach(p => p.style.display = "none");
+  pages[currentPage - 1].style.display = "block";
 
   updateDots();
   window.scrollTo(0, 0);
 }
+
 
 function updateDots() {
   const dotContainer = document.getElementById("pageDots");
