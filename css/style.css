@@ -99,10 +99,12 @@ button:hover {
 }
 
 .bottom-nav {
-  margin-top: 60px;
+  margin: 60px auto 0 auto;
   display: flex;
   justify-content: center;
-  gap: 40px;   /* 矢印の間隔 */
+  align-items: center;
+  width: 100%;
+  gap: 40px;
 }
 
 .bottom-nav button {
