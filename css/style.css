@@ -1,74 +1,61 @@
 body {
   margin: 0;
-  font-family: system-ui, sans-serif;
-  background: #ffffff;
+  font-family: "Hiragino Mincho ProN", serif;
+  background: #fdfdfd;
 }
 
-/* ===== ヘッダー ===== */
 .reader-header {
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(6px);
+  background: white;
   border-bottom: 1px solid #ddd;
+  padding: 10px;
   z-index: 1000;
 }
 
-.header-inner {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 15px;
-  text-align: center;
+.title {
+  font-size: 20px;
+  margin: 5px 0;
 }
 
-.novel-title {
-  margin: 0 0 8px 0;
-  font-size: 1.4rem;
-  font-weight: 600;
-}
-
-/* コントロール */
-.reader-controls {
-  margin-bottom: 8px;
-  font-size: 0.9rem;
-}
-
-.reader-controls button,
+.controls button,
 .page-nav button {
   margin: 3px;
-  padding: 4px 8px;
+  padding: 5px 10px;
   cursor: pointer;
-  border: 1px solid #ccc;
-  background: #f8f8f8;
 }
 
-.reader-controls button:hover,
-.page-nav button:hover {
-  background: #eaeaea;
+.page-btn.active {
+  background: #333;
+  color: white;
 }
 
-/* ===== 本文 ===== */
 .container {
   max-width: 800px;
-  margin: 0 auto 40px auto;
-  padding: 0 20px;
+  margin: 0 auto;
+  padding: 200px 20px 40px 20px;
 }
 
-.novel-section {
+.page {
   display: none;
-  line-height: 1.9;
+  line-height: 1.8;
   font-size: 18px;
-  white-space: pre-wrap;
 }
 
-/* ===== 縦書きモード ===== */
-.vertical-mode {
+.page.active {
+  display: block;
+}
+
+/* 縦書きモード */
+.vertical {
   writing-mode: vertical-rl;
-  text-orientation: mixed;
   overflow-x: auto;
-  overflow-y: hidden;
-  height: 80vh;
-  padding-bottom: 2em;
+  white-space: nowrap;
+}
+
+.vertical .page {
+  display: inline-block;
+  width: 100%;
+  height: 70vh;
 }
