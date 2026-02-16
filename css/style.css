@@ -1,221 +1,88 @@
-/* =======================
-   ベース設定
-======================= */
+/* ===== 全体 ===== */
 
 body {
   margin: 0;
-  padding: 0;
-  font-family: serif;
-  background: #ffffff;
+  background: #fafafa;
   color: #222;
-  line-height: 2.1;
-  letter-spacing: 0.02em;
-  -webkit-text-size-adjust: 100%;
+  text-align: center;
 }
 
-h1, h2 {
-  font-weight: normal;
-  margin: 0;
+/* ===== フォント切替 ===== */
+
+body.mincho {
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
 }
+
+body.gothic {
+  font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+}
+
+/* ===== ヘッダー ===== */
+
+.novel-header {
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  padding: 20px 0 10px 0;
+  border-bottom: 1px solid #ddd;
+  z-index: 10;
+}
+
+.novel-header h1 {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  font-weight: normal;
+}
+
+/* ===== ボタン ===== */
 
 button {
   background: none;
-  border: none;
+  border: 1px solid #ccc;
+  padding: 4px 8px;
+  margin: 0 4px;
   cursor: pointer;
-  font-family: inherit;
-  color: inherit;
+  font-size: 14px;
 }
 
 button:hover {
-  opacity: 0.6;
+  background: #f0f0f0;
 }
 
+/* ===== ページ番号 ===== */
 
-/* =======================
-   中央レイアウト（ガチャ・認証）
-======================= */
-
-.center {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  text-align: center;
+#pageNumbers {
+  display: inline-block;
+  margin: 0 10px;
 }
 
-.main-button {
-  font-size: 15px;
-  padding: 8px 20px;
-  border: 1px solid #ccc;
-  margin-top: 28px;
-}
-
-.main-button:hover {
-  border-color: #999;
-}
-
-
-/* =======================
-   ガチャ小説（単ページ）
-======================= */
-
-.novel-single {
-  max-width: 620px;     /* 行長を抑える */
-  margin: 140px auto 100px;
-  padding: 0 28px;
-  font-size: 17px;
-  line-height: 2.1;
-}
-
-.bottom-nav {
-  text-align: center;
-  margin-top: 80px;
-}
-
-.bottom-nav button {
-  font-size: 14px;
-  color: #555;
-  letter-spacing: 0.05em;
-}
-
-.bottom-nav button:hover {
-  color: #000;
-}
-
-
-/* =======================
-   特別小説 固定ヘッダー
-======================= */
-
-.novel-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: #fff;
-  border-bottom: 1px solid #eee;
-  z-index: 1000;
-}
-
-.header-inner {
-  max-width: 680px;
-  margin: 0 auto;
-  padding: 26px 28px 18px;
-  text-align: center;
-}
-
-.novel-title {
-  font-size: 17px;
-  margin-bottom: 14px;
-  letter-spacing: 0.08em;
-}
-
-
-/* =======================
-   ページナビ（淡グレー基調）
-======================= */
-
-.nav-line {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
-  margin-bottom: 8px;
-}
-
-.page-numbers span {
+#pageNumbers span {
   margin: 0 6px;
   cursor: pointer;
-  color: #bbb;         /* 通常は淡いグレー */
-  transition: color 0.2s ease;
+  font-size: 14px;
 }
 
-.page-numbers span:hover {
-  color: #666;
-}
-
-/* 現在ページ */
-.page-numbers span.active {
-  color: #111;
+.current-page {
+  color: #000;
   font-weight: bold;
 }
 
-
-/* =======================
-   フォント・サイズ切替
-======================= */
-
-.controls {
-  font-size: 12px;
-  margin-top: 6px;
-  color: #888;
+.other-page {
+  color: #bbb;
 }
 
-.controls button {
-  margin: 0 6px;
-  font-size: 12px;
-  padding: 2px 4px;
-  color: #666;
-}
-
-.controls button:hover {
-  color: #000;
-}
-
-
-/* =======================
-   特別小説 本文
-======================= */
+/* ===== 本文 ===== */
 
 #novelText {
-  max-width: 680px;      /* 行長抑制 */
-  margin: 0 auto 120px;
-  padding: 200px 28px 0; /* ヘッダー余白確保 */
-  font-size: 17px;
+  max-width: 680px;
+  margin: 60px auto;
+  padding: 0 20px;
   line-height: 2.1;
+  letter-spacing: 0.05em;
+  text-align: left;
 }
 
+/* 改行反映 */
 .page {
-  display: none;
-}
-
-
-/* =======================
-   スマホ最適化
-======================= */
-
-@media (max-width: 600px) {
-
-  body {
-    line-height: 2.2;
-  }
-
-  .novel-title {
-    font-size: 16px;
-  }
-
-  .header-inner {
-    padding: 30px 20px 20px;
-  }
-
-  #novelText {
-    padding-top: 230px;
-    font-size: 18px;
-    line-height: 2.2;
-  }
-
-  .controls {
-    font-size: 11px;
-  }
-
-  .novel-single {
-    max-width: 100%;
-    font-size: 18px;
-    padding: 0 22px;
-    line-height: 2.2;
-  }
-
-  .page-numbers span {
-    margin: 0 5px;
-  }
+  white-space: pre-line;
 }
