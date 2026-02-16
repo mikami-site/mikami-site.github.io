@@ -889,42 +889,68 @@
 
 let currentSize = 18;
 
+/* =========================
+   ページ切り替え
+========================= */
 function showPage(pageNumber) {
   const pages = document.querySelectorAll('.novel-section');
   pages.forEach(p => p.style.display = 'none');
 
-  document.getElementById('page' + pageNumber).style.display = 'block';
+  const targetPage = document.getElementById('page' + pageNumber);
+  if (targetPage) {
+    targetPage.style.display = 'block';
+  }
 
   applySettings();
+  adjustLayout();
 
-  const headerHeight = document.querySelector('.reader-header').offsetHeight;
-
-  window.scrollTo({
-    top: headerHeight,
-  });
+  // 即トップへ戻る
+  window.scrollTo(0, 0);
 }
 
+
+/* =========================
+   フォント設定
+========================= */
 function setFont(type) {
   localStorage.setItem('fontType', type);
   applySettings();
+  adjustLayout();
 }
 
+
+/* =========================
+   文字サイズ変更
+========================= */
 function changeSize(amount) {
   currentSize += amount;
+
   if (currentSize < 12) currentSize = 12;
   if (currentSize > 36) currentSize = 36;
 
   localStorage.setItem('fontSize', currentSize);
   applySettings();
+  adjustLayout();
 }
 
+
+/* =========================
+   設定適用
+========================= */
 function applySettings() {
+
   const visiblePage = document.querySelector('.novel-section[style*="block"]');
   if (!visiblePage) return;
 
+  /* フォントサイズ */
   visiblePage.style.fontSize = currentSize + 'px';
-  document.getElementById('fontSizeDisplay').textContent = currentSize;
 
+  const sizeDisplay = document.getElementById('fontSizeDisplay');
+  if (sizeDisplay) {
+    sizeDisplay.textContent = currentSize;
+  }
+
+  /* フォント種類 */
   const savedFont = localStorage.getItem('fontType');
 
   if (savedFont === 'mincho') {
@@ -936,27 +962,37 @@ function applySettings() {
   }
 }
 
-window.onload = function() {
-  const savedSize = localStorage.getItem('fontSize');
-  if (savedSize) currentSize = parseInt(savedSize);
 
-  showPage(1);
-};
-
+/* =========================
+   ヘッダー高さ自動調整
+========================= */
 function adjustLayout() {
   const header = document.querySelector('.reader-header');
   const container = document.querySelector('.container');
-  const headerHeight = header.offsetHeight;
 
+  if (!header || !container) return;
+
+  const headerHeight = header.offsetHeight;
   container.style.marginTop = headerHeight + 'px';
 }
 
-window.addEventListener('load', adjustLayout);
+
+/* =========================
+   初期読み込み
+========================= */
+window.addEventListener('load', function() {
+
+  const savedSize = localStorage.getItem('fontSize');
+  if (savedSize) {
+    currentSize = parseInt(savedSize);
+  }
+
+  showPage(1);   // 初期表示ページ
+});
+
 window.addEventListener('resize', adjustLayout);
 
-  
 </script>
-
 
 </body>
 </html>
