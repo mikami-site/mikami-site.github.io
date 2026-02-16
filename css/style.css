@@ -1,135 +1,72 @@
-/* ===== 全体 ===== */
 body {
   margin: 0;
-  padding: 0;
-  background: #fafafa;
+  font-family: serif;
+  line-height: 1.9;
+  background: #fff;
   color: #222;
-  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
 }
 
-/* ===== 共通中央配置 ===== */
 .center {
-  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+main {
+  max-width: 720px;
+  margin: 120px auto 60px;
+  padding: 0 20px;
+}
+
+.novel-single {
+  max-width: 680px;
   margin: 100px auto;
   padding: 0 20px;
-  text-align: center;
 }
 
-/* ===== 固定ヘッダー ===== */
-header {
+.page {
+  font-size: 17px;
+}
+
+.novel-header {
   position: fixed;
   top: 0;
   width: 100%;
-  background: #fafafa;
-  border-bottom: 1px solid #e0e0e0;
-  padding: 16px 0;
+  background: #fff;
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
   text-align: center;
 }
 
-header h1 {
-  font-size: 18px;
-  font-weight: normal;
-  margin: 0;
-  letter-spacing: 0.05em;
-}
-
-/* ===== 本文 ===== */
-main {
-  max-width: 640px;
-  margin: 140px auto 100px auto;
-  padding: 0 20px;
-
-  font-size: 17px;
-  line-height: 2.0;
-  letter-spacing: 0.02em;
-  text-align: left;
-}
-
-/* 段落 */
-main p {
-  margin-bottom: 1.8em;
-}
-
-/* ===== UI系 ===== */
-.controls,
-.pagination {
-  margin-top: 10px;
+.controls button,
+.pagination button,
+.bottom-nav button,
+.main-button {
+  margin: 5px;
+  padding: 6px 10px;
   font-size: 14px;
 }
 
-button {
-  background: none;
-  border: 1px solid #bbb;
-  padding: 4px 10px;
-  margin: 0 4px;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #eee;
-}
-
-/* ===== パスワード画面 ===== */
-#passwordScreen {
-  margin-top: 160px;
-}
-
-/* ===== ページ番号 ===== */
-
-.page-number {
+.pagination span {
   margin: 0 6px;
   cursor: pointer;
-  font-size: 14px;
-  color: #555;
 }
 
-.page-number.active {
-  font-weight: bold;
-  color: #000;
+.bottom-nav {
+  text-align: center;
+  margin: 40px 0;
 }
 
+/* 📱 スマホ最適化 */
+@media (max-width: 600px) {
+  main, .novel-single {
+    margin-top: 160px;
+  }
 
-/* ===== スマホ用 ===== */
-@media screen and (max-width: 600px) {
-
-  body {
+  .page {
     font-size: 18px;
+    line-height: 2;
   }
-
-  main {
-    font-size: 18px;
-    line-height: 2.1;
-    padding: 0 16px;
-    margin: 120px auto 80px auto;
-  }
-
-  header {
-    padding: 12px 0;
-  }
-
-  header h1 {
-    font-size: 16px;
-  }
-
-  .controls,
-  .pagination {
-    font-size: 13px;
-  }
-
-  button {
-    padding: 6px 12px;
-    font-size: 14px;
-  }
-
-  .dot {
-    width: 10px;
-    height: 10px;
-  }
-
 }
-
-html {
-  -webkit-text-size-adjust: 100%;
-}
-
