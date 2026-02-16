@@ -75,29 +75,20 @@ button:hover {
   margin-top: 160px;
 }
 
-/* ===== ページ丸 ===== */
-.dots {
-  display: inline-flex;
-  gap: 8px;
-  margin: 0 10px;
-  vertical-align: middle;
+/* ===== ページ番号 ===== */
+
+.page-number {
+  margin: 0 6px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #555;
 }
 
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #ccc;
-  transition: 0.2s;
+.page-number.active {
+  font-weight: bold;
+  color: #000;
 }
 
-.dot.active {
-  background: #222;
-}
-
-.page {
-  white-space: pre-line;
-}
 
 /* ===== スマホ用 ===== */
 @media screen and (max-width: 600px) {
@@ -137,3 +128,8 @@ button:hover {
   }
 
 }
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
