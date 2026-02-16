@@ -98,3 +98,42 @@ button:hover {
 .page {
   white-space: pre-line;
 }
+
+/* ===== スマホ用 ===== */
+@media screen and (max-width: 600px) {
+
+  body {
+    font-size: 18px;
+  }
+
+  main {
+    font-size: 18px;
+    line-height: 2.1;
+    padding: 0 16px;
+    margin: 120px auto 80px auto;
+  }
+
+  header {
+    padding: 12px 0;
+  }
+
+  header h1 {
+    font-size: 16px;
+  }
+
+  .controls,
+  .pagination {
+    font-size: 13px;
+  }
+
+  button {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+  }
+
+}
