@@ -26,7 +26,7 @@ function checkPassword() {
   if (input === pass) {
 
     localStorage.setItem("auth", "ok");
-    location.href = "novel0.html";
+    location.href = "zzz-novel00.html";
 
   } else {
     alert("パスワードが違います");
