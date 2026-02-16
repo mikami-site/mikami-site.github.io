@@ -36,32 +36,42 @@
 </head>
 <body>
 
+<header class="reader-header">
+  <div class="header-inner">
+
+    <h1 class="novel-title">小説タイトル</h1>
+
+    <div class="reader-controls">
+      フォント：
+      <button onclick="setFont('gothic')">ゴシック</button>
+      <button onclick="setFont('mincho')">明朝</button>
+
+      &nbsp;&nbsp;
+
+      文字サイズ：
+      <button onclick="changeSize(-2)">−</button>
+      <span id="fontSizeDisplay">18</span>px
+      <button onclick="changeSize(2)">＋</button>
+    </div>
+
+    <div class="page-nav">
+      <button onclick="showPage(1)">1</button>
+      <button onclick="showPage(2)">2</button>
+      <button onclick="showPage(3)">3</button>
+      <button onclick="showPage(4)">4</button>
+    </div>
+
+  </div>
+</header>
+
 <main class="container">
 
-<h1>指先に灯る温度</h1>
-<!-- 読書設定 -->
-<header class="reader-header">
-  <div>
-    フォント：
-    <button onclick="setFont('gothic')">ゴシック</button>
-    <button onclick="setFont('mincho')">明朝</button>
-  </div>
+  <div id="page1" class="novel-section">本文1...</div>
+  <div id="page2" class="novel-section">本文2...</div>
+  <div id="page3" class="novel-section">本文3...</div>
+  <div id="page4" class="novel-section">本文4...</div>
 
-  <div style="margin-top:10px;">
-    文字サイズ：
-    <button onclick="changeSize(-2)">−</button>
-    <span id="fontSizeDisplay">18</span>px
-    <button onclick="changeSize(2)">＋</button>
-  </div>
-</header>
-
-<!-- ページ番号 -->
-<header class="reader-header">
-  <button onclick="showPage(1)">1</button>
-  <button onclick="showPage(2)">2</button>
-  <button onclick="showPage(3)">3</button>
-  <button onclick="showPage(4)">4</button>
-</header>
+</main>
 
 <article>
 
