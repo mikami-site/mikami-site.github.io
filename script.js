@@ -71,32 +71,34 @@ function loadPage() {
 
 
 // =======================
-// ● ページ丸ナビ
+// ● ページ切り替え
 // =======================
 function updateDots() {
 
-  const dotContainer = document.getElementById("pageDots");
-  if (!dotContainer) return;
+  const container = document.getElementById("pageDots");
+  if (!container) return;
 
-  dotContainer.innerHTML = "";
+  container.innerHTML = "";
 
   for (let i = 1; i <= pages.length; i++) {
 
-    const dot = document.createElement("div");
-    dot.classList.add("dot");
+    const number = document.createElement("span");
+    number.textContent = i;
+    number.classList.add("page-number");
 
     if (i === currentPage) {
-      dot.classList.add("active");
+      number.classList.add("active");
     }
 
-    dot.addEventListener("click", function () {
+    number.addEventListener("click", function () {
       currentPage = i;
       loadPage();
     });
 
-    dotContainer.appendChild(dot);
+    container.appendChild(number);
   }
 }
+
 
 
 // =======================
