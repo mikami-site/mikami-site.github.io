@@ -8,12 +8,14 @@ body {
   font-family: serif;
   background: #ffffff;
   color: #222;
-  line-height: 1.9;
+  line-height: 2.1;
+  letter-spacing: 0.02em;
   -webkit-text-size-adjust: 100%;
 }
 
 h1, h2 {
   font-weight: normal;
+  margin: 0;
 }
 
 button {
@@ -21,7 +23,7 @@ button {
   border: none;
   cursor: pointer;
   font-family: inherit;
-  color: #333;
+  color: inherit;
 }
 
 button:hover {
@@ -43,10 +45,10 @@ button:hover {
 }
 
 .main-button {
-  font-size: 16px;
-  padding: 8px 18px;
+  font-size: 15px;
+  padding: 8px 20px;
   border: 1px solid #ccc;
-  margin-top: 20px;
+  margin-top: 28px;
 }
 
 .main-button:hover {
@@ -59,24 +61,26 @@ button:hover {
 ======================= */
 
 .novel-single {
-  max-width: 680px;
-  margin: 100px auto 60px;
-  padding: 0 20px;
+  max-width: 620px;     /* 行長を抑える */
+  margin: 140px auto 100px;
+  padding: 0 28px;
   font-size: 17px;
+  line-height: 2.1;
 }
 
 .bottom-nav {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 80px;
 }
 
 .bottom-nav button {
   font-size: 14px;
-  border-bottom: 1px solid transparent;
+  color: #555;
+  letter-spacing: 0.05em;
 }
 
 .bottom-nav button:hover {
-  border-bottom: 1px solid #888;
+  color: #000;
 }
 
 
@@ -89,46 +93,50 @@ button:hover {
   top: 0;
   width: 100%;
   background: #fff;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #eee;
   z-index: 1000;
 }
 
 .header-inner {
-  max-width: 720px;
+  max-width: 680px;
   margin: 0 auto;
-  padding: 18px 20px 14px;
+  padding: 26px 28px 18px;
   text-align: center;
 }
 
 .novel-title {
-  font-size: 18px;
-  margin: 0 0 8px;
-  letter-spacing: 0.05em;
+  font-size: 17px;
+  margin-bottom: 14px;
+  letter-spacing: 0.08em;
 }
 
 
 /* =======================
-   ページナビ
+   ページナビ（淡グレー基調）
 ======================= */
 
 .nav-line {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 6px;
+  gap: 18px;
+  margin-bottom: 8px;
 }
 
 .page-numbers span {
-  margin: 0 5px;
+  margin: 0 6px;
   cursor: pointer;
+  color: #bbb;         /* 通常は淡いグレー */
+  transition: color 0.2s ease;
 }
 
 .page-numbers span:hover {
-  opacity: 0.6;
+  color: #666;
 }
 
-.page-numbers span[style*="bold"] {
+/* 現在ページ */
+.page-numbers span.active {
+  color: #111;
   font-weight: bold;
 }
 
@@ -138,14 +146,20 @@ button:hover {
 ======================= */
 
 .controls {
-  font-size: 13px;
-  margin-top: 4px;
+  font-size: 12px;
+  margin-top: 6px;
+  color: #888;
 }
 
 .controls button {
-  margin: 0 4px;
-  font-size: 13px;
-  padding: 2px 6px;
+  margin: 0 6px;
+  font-size: 12px;
+  padding: 2px 4px;
+  color: #666;
+}
+
+.controls button:hover {
+  color: #000;
 }
 
 
@@ -154,10 +168,11 @@ button:hover {
 ======================= */
 
 #novelText {
-  max-width: 720px;
-  margin: 0 auto 80px;
-  padding: 160px 20px 0;
+  max-width: 680px;      /* 行長抑制 */
+  margin: 0 auto 120px;
+  padding: 200px 28px 0; /* ヘッダー余白確保 */
   font-size: 17px;
+  line-height: 2.1;
 }
 
 .page {
@@ -171,26 +186,36 @@ button:hover {
 
 @media (max-width: 600px) {
 
+  body {
+    line-height: 2.2;
+  }
+
   .novel-title {
     font-size: 16px;
   }
 
   .header-inner {
-    padding: 20px 14px 14px;
+    padding: 30px 20px 20px;
   }
 
   #novelText {
-    padding-top: 190px;
+    padding-top: 230px;
     font-size: 18px;
-    line-height: 2;
+    line-height: 2.2;
   }
 
   .controls {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .novel-single {
+    max-width: 100%;
     font-size: 18px;
-    line-height: 2;
+    padding: 0 22px;
+    line-height: 2.2;
+  }
+
+  .page-numbers span {
+    margin: 0 5px;
   }
 }
