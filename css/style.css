@@ -38,16 +38,19 @@ body.gothic {
 
 button {
   background: none;
-  border: 1px solid #ccc;
-  padding: 4px 8px;
+  border: 1px solid #ddd;
+  padding: 3px 8px;      /* 少しだけコンパクト */
   margin: 0 4px;
+  font-size: 13px;       /* 14 → 13 に */
+  line-height: 1.5;
   cursor: pointer;
-  font-size: 14px;
+  border-radius: 4px;    /* ほんの少し柔らかく */
 }
 
 button:hover {
-  background: #f0f0f0;
+  background: #f7f7f7;
 }
+
 
 /* ===== ページ番号 ===== */
 
