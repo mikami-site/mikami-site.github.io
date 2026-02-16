@@ -105,7 +105,7 @@ function changeSize(amount) {
 
   fontSize += amount;
 
-  if (fontSize < 12) fontSize = 12;
+  if (fontSize < 14) fontSize = 14;
   if (fontSize > 24) fontSize = 24;
 
   pages.forEach(p => {
