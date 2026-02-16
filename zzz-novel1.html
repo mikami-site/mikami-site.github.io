@@ -920,9 +920,11 @@ function applySettings() {
 
   const savedFont = localStorage.getItem('fontType');
   if (savedFont === 'mincho') {
-    visiblePage.style.fontFamily = '"Hiragino Mincho ProN", serif';
-  } else {
-    visiblePage.style.fontFamily = 'system-ui, sans-serif';
+    visiblePage.style.fontFamily =
+  '"Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif';
+  }
+    visiblePage.style.fontFamily =
+  '"Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif';
   }
 }
 
