@@ -23,7 +23,7 @@ function checkPassword() {
   const input = document.getElementById("passwordInput").value;
 
   if (input === pass) {
-    location.href = "novel0.html";
+    location.href = "zzz-novel00.html";
   } else {
     alert("パスワードが違います");
   }
