@@ -1,6 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>特別小説</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
 <body>
 
-<header>
+<header class="novel-header">
   <h1>特別小説タイトル</h1>
 
   <div class="controls">
@@ -15,34 +24,26 @@
 
   <div class="pagination">
     <button onclick="changePage(-1)">←</button>
-    <div id="pageDots"></div>
+    <div id="pageNumbers"></div>
     <button onclick="changePage(1)">→</button>
   </div>
 </header>
 
 <main id="novelText">
 
-<div class="page">
-1ページ目
-</div>
-
-<div class="page">
-2ページ目
-</div>
-
-<div class="page">
-3ページ目
-</div>
-
-<div class="page">
-4ページ目
-</div>
-
-<div class="page">
-5ページ目
-</div>
+<div class="page">1ページ目本文</div>
+<div class="page">2ページ目本文</div>
+<div class="page">3ページ目本文</div>
+<div class="page">4ページ目本文</div>
+<div class="page">5ページ目本文</div>
 
 </main>
 
+<div class="bottom-nav">
+  <button onclick="changePage(-1)">←</button>
+  <button onclick="changePage(1)">→</button>
+</div>
+
 <script src="script.js"></script>
 </body>
+</html>
