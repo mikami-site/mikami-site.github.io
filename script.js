@@ -35,48 +35,51 @@ let currentPage = 1;
 let pages = [];
 let fontSize = 17;
 
-window.addEventListener("DOMContentLoaded", function () {
-
-  if (location.pathname.includes("zzz-novel00.html")) {
-    if (localStorage.getItem("auth") !== "ok") {
-      location.href = "enter.html";
-      return;
-    }
-  }
+document.addEventListener("DOMContentLoaded", function () {
 
   pages = Array.from(document.querySelectorAll(".page"));
+  pages.forEach(p => p.style.display = "none");
 
-  if (pages.length > 0) {
-    pages.forEach(p => p.style.display = "none");
-    loadPage();
-  }
+  loadPage();
 });
 
 function loadPage() {
+
   pages.forEach(p => p.style.display = "none");
-  pages[currentPage - 1].style.display = "block";
+
+  if (pages[currentPage - 1]) {
+    pages[currentPage - 1].style.display = "block";
+  }
+
   updateNumbers();
   window.scrollTo(0, 0);
 }
 
-function changePage(dir) {
-  currentPage += dir;
+function changePage(direction) {
+
+  currentPage += direction;
+
   if (currentPage < 1) currentPage = 1;
   if (currentPage > pages.length) currentPage = pages.length;
+
   loadPage();
 }
 
 function updateNumbers() {
-  const container = document.getElementById("pageNumbers");
-  if (!container) return;
 
+  const container = document.getElementById("pageNumbers");
   container.innerHTML = "";
 
   for (let i = 1; i <= pages.length; i++) {
+
     const span = document.createElement("span");
     span.textContent = i;
 
-    if (i === currentPage) span.style.fontWeight = "bold";
+    if (i === currentPage) {
+      span.classList.add("current-page");
+    } else {
+      span.classList.add("other-page");
+    }
 
     span.addEventListener("click", function () {
       currentPage = i;
@@ -88,13 +91,20 @@ function updateNumbers() {
 }
 
 function setFont(type) {
-  pages.forEach(p => {
-    p.style.fontFamily = (type === "gothic") ? "sans-serif" : "serif";
-  });
+
+  if (type === "gothic") {
+    document.body.classList.remove("mincho");
+    document.body.classList.add("gothic");
+  } else {
+    document.body.classList.remove("gothic");
+    document.body.classList.add("mincho");
+  }
 }
 
 function changeSize(amount) {
+
   fontSize += amount;
+
   if (fontSize < 12) fontSize = 12;
   if (fontSize > 24) fontSize = 24;
 
@@ -102,3 +112,4 @@ function changeSize(amount) {
     p.style.fontSize = fontSize + "px";
   });
 }
+
