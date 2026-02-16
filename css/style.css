@@ -1,81 +1,168 @@
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小説タイトル</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="reader-header">
+  <div class="header-inner">
+
+    <h1 class="novel-title">小説タイトル</h1>
+
+    <div class="reader-controls">
+      フォント：
+      <button onclick="setFont('gothic')">ゴシック</button>
+      <button onclick="setFont('mincho')">明朝</button>
+
+      &nbsp;&nbsp;
+
+      文字サイズ：
+      <button onclick="changeSize(-2)">−</button>
+      <span id="fontSizeDisplay">18</span>px
+      <button onclick="changeSize(2)">＋</button>
+
+      &nbsp;&nbsp;
+
+      表示：
+      <button onclick="toggleWritingMode()">横 / 縦</button>
+    </div>
+
+    <div class="page-nav">
+      <button onclick="prevPage()">← 前へ</button>
+      <span id="pageIndicator">1</span>
+      <button onclick="nextPage()">次へ →</button>
+    </div>
+
+  </div>
+</header>
+
+<main class="container">
+
+  <div id="page1" class="novel-section">
+    ここに本文１を書きます。
+  </div>
+
+  <div id="page2" class="novel-section">
+    ここに本文２を書きます。
+  </div>
+
+  <div id="page3" class="novel-section">
+    ここに本文３を書きます。
+  </div>
+
+  <div id="page4" class="novel-section">
+    ここに本文４を書きます。
+  </div>
+
+</main>
+
+<script>
+let currentSize = 18;
+let currentPage = 1;
+const totalPages = 4;
+
+/* ===== ページ表示 ===== */
+function showPage(pageNumber) {
+  if (pageNumber < 1 || pageNumber > totalPages) return;
+
+  currentPage = pageNumber;
+
+  const pages = document.querySelectorAll('.novel-section');
+  pages.forEach(p => p.style.display = 'none');
+
+  const target = document.getElementById('page' + pageNumber);
+  if (target) target.style.display = 'block';
+
+  document.getElementById('pageIndicator').textContent = currentPage;
+
+  applySettings();
+  adjustLayout();
+
+  window.scrollTo(0, 0);
 }
 
-.reader-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid #ddd;
-  z-index: 1000;
+/* 前へ */
+function prevPage() {
+  if (currentPage > 1) showPage(currentPage - 1);
 }
 
-.header-inner {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 10px;
-  text-align: center;
+/* 次へ */
+function nextPage() {
+  if (currentPage < totalPages) showPage(currentPage + 1);
 }
 
-.novel-title {
-  margin: 0 0 8px 0;
-  font-size: 1.4rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
+/* フォント */
+function setFont(type) {
+  localStorage.setItem('fontType', type);
+  applySettings();
+  adjustLayout();
 }
 
-.reader-controls {
-  margin-bottom: 10px;
-  font-size: 0.9rem;
+/* サイズ変更 */
+function changeSize(amount) {
+  currentSize += amount;
+
+  if (currentSize < 12) currentSize = 12;
+  if (currentSize > 36) currentSize = 36;
+
+  localStorage.setItem('fontSize', currentSize);
+  applySettings();
+  adjustLayout();
 }
 
-.reader-controls button,
-.page-nav button {
-  margin: 3px;
-  padding: 4px 8px;
-  cursor: pointer;
+/* 縦横切替 */
+function toggleWritingMode() {
+  const visible = document.querySelector('.novel-section[style*="block"]');
+  if (!visible) return;
+
+  visible.classList.toggle('vertical-mode');
+
+  const isVertical = visible.classList.contains('vertical-mode');
+  localStorage.setItem('writingMode', isVertical ? 'vertical' : 'horizontal');
+
+  adjustLayout();
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto 40px auto;
-  padding: 0 20px;
+/* 設定適用 */
+function applySettings() {
+  const visible = document.querySelector('.novel-section[style*="block"]');
+  if (!visible) return;
+
+  visible.style.fontSize = currentSize + 'px';
+  document.getElementById('fontSizeDisplay').textContent = currentSize;
+
+  const savedFont = localStorage.getItem('fontType');
+  visible.style.fontFamily =
+    savedFont === 'mincho'
+      ? '"Hiragino Mincho ProN","Yu Mincho","MS Mincho",serif'
+      : '"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif';
+
+  const savedWriting = localStorage.getItem('writingMode');
+  visible.classList.toggle('vertical-mode', savedWriting === 'vertical');
 }
 
-.novel-section {
-  display: none;
-  line-height: 1.8;
-  font-size: 18px;
-}
-  margin-bottom: 20px;
-  font-size: 0.9rem;
+/* ヘッダー高さ補正 */
+function adjustLayout() {
+  const header = document.querySelector('.reader-header');
+  const container = document.querySelector('.container');
+  container.style.marginTop = header.offsetHeight + 'px';
 }
 
-.reader-controls button {
-  margin: 0 5px;
-  padding: 4px 8px;
-  cursor: pointer;
-}
+/* 初期化 */
+window.addEventListener('load', function () {
+  const savedSize = localStorage.getItem('fontSize');
+  if (savedSize) currentSize = parseInt(savedSize);
 
-.reader-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #ffffff;
-  padding: 15px 0;
-  border-bottom: 1px solid #ccc;
-  z-index: 1000;
-}
+  showPage(1);
+});
 
-main.container {
-  margin-top: 150px; /* ヘッダー分の余白 */
-}
+window.addEventListener('resize', adjustLayout);
 
-.gacha-button:hover {
-  opacity: 0.85;
-}
+</script>
+</body>
+</html>
