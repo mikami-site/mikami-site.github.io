@@ -2,47 +2,17 @@
 body {
   margin: 0;
   padding: 0;
-  background: #f4f1ea;          /* やや紙色 */
-  color: #2b2b2b;               /* 真っ黒にしない */
-  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  background: #fafafa;
+  color: #222;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
 }
 
-/* ===== 中央レイアウト ===== */
+/* ===== 共通中央配置 ===== */
 .center {
-  max-width: 680px;
-  margin: 80px auto;
-  padding: 40px 24px;
-}
-
-/* ===== 見出し ===== */
-h1, h2 {
-  font-weight: normal;
-  letter-spacing: 0.08em;
-}
-
-/* ===== 本文 ===== */
-main {
-  max-width: 680px;
-  margin: 180px auto 100px auto;
-  padding: 0 24px;
-
-  font-size: 16px;
-  line-height: 2.1;
-  letter-spacing: 0.03em;
-}
-
-/* ===== ボタン（主張を抑える） ===== */
-button {
-  background: none;
-  border: 1px solid #aaa;
-  padding: 6px 14px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #ddd;
+  max-width: 640px;
+  margin: 100px auto;
+  padding: 0 20px;
+  text-align: center;
 }
 
 /* ===== 固定ヘッダー ===== */
@@ -50,18 +20,57 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  background: #f4f1ea;
-  padding: 20px 0;
-  border-bottom: 1px solid #ddd;
+  background: #fafafa;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 16px 0;
   text-align: center;
 }
 
+header h1 {
+  font-size: 18px;
+  font-weight: normal;
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+/* ===== 本文 ===== */
+main {
+  max-width: 640px;
+  margin: 140px auto 100px auto;
+  padding: 0 20px;
+
+  font-size: 17px;
+  line-height: 2.0;
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+
+/* 段落 */
+main p {
+  margin-bottom: 1.8em;
+}
+
+/* ===== UI系 ===== */
 .controls,
 .pagination {
   margin-top: 10px;
+  font-size: 14px;
+}
+
+button {
+  background: none;
+  border: 1px solid #bbb;
+  padding: 4px 10px;
+  margin: 0 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #eee;
 }
 
 /* ===== パスワード画面 ===== */
 #passwordScreen {
-  margin-top: 150px;
+  margin-top: 160px;
 }
