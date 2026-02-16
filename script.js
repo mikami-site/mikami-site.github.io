@@ -90,3 +90,8 @@ function changeSize(amount) {
     fontSize + "px";
 }
 
+function handleKey(event) {
+  if (event.key === "Enter") {
+    checkPassword();
+  }
+}
