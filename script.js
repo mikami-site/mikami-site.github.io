@@ -48,7 +48,6 @@ function loadPage() {
   window.scrollTo(0, 0);
 }
 
-
 function updateDots() {
   const dotContainer = document.getElementById("pageDots");
   dotContainer.innerHTML = "";
@@ -61,10 +60,15 @@ function updateDots() {
       dot.classList.add("active");
     }
 
+    // ★ ここが追加部分
+    dot.addEventListener("click", function () {
+      currentPage = i;
+      loadPage();
+    });
+
     dotContainer.appendChild(dot);
   }
 }
-
 
 function changePage(direction) {
   currentPage += direction;
