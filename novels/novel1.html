@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>小話タイトル</title>
-  <link rel="stylesheet" href="../css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小話</title>
+<link rel="stylesheet" href="../css/style.css">
 </head>
-<body class="center">
 
-  <h2>小話タイトル</h2>
+<body class="novel-body">
 
-  <p>
-    ここに小説本文を書きます。<br>
-    テキストテキストテキスト…
-  </p>
+<main class="novel-single">
 
-<button onclick="drawNovel()">
-  もう一度回す
-</button>
+<p>
+ここに小話本文をそのまま貼るだけ。
+改行はCSSで制御します。
+</p>
 
-<script src="/script.js"></script>
+<div class="back-area">
+    <button onclick="drawNovel()">もう一度回す</button>
+</div>
 
+</main>
+
+<script src="../script.js"></script>
 </body>
 </html>
