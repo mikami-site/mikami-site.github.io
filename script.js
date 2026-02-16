@@ -36,7 +36,7 @@ function checkPassword() {
 // =======================
 let currentPage = 1;
 let pages = [];
-let fontSize = 17;   // ← これが抜けていました（重要）
+let fontSize = 17;
 
 window.addEventListener("DOMContentLoaded", function () {
 
