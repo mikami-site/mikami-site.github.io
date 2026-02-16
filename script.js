@@ -1,3 +1,6 @@
+// =======================
+// 🎲 ガチャ機能
+// =======================
 function drawNovel() {
   const novels = [
     "novels/novel1.html",
@@ -11,9 +14,12 @@ function drawNovel() {
   location.href = novels[random];
 }
 
-// ===== パスワード =====
+
+// =======================
+// 🔐 パスワード機能
+// =======================
 function checkPassword() {
-  const pass = "0719"; // ここを変更
+  const pass = "0719";  // ←ここ変更可
   const input = document.getElementById("passwordInput").value;
 
   if (input === pass) {
@@ -25,11 +31,22 @@ function checkPassword() {
   }
 }
 
-// ===== 特別小説ページ制御 =====
+function handleKey(event) {
+  if (event.key === "Enter") {
+    checkPassword();
+  }
+}
+
+
+// =======================
+// 📖 特別小説ページ制御
+// =======================
 let currentPage = 1;
 let pages = [];
+let fontSize = 17;   // ← これが抜けていました（重要）
 
 window.addEventListener("DOMContentLoaded", function () {
+
   const pageElements = document.querySelectorAll(".page");
   pages = Array.from(pageElements);
 
@@ -38,21 +55,33 @@ window.addEventListener("DOMContentLoaded", function () {
   if (pages.length > 0) {
     loadPage();
   }
+
 });
 
 function loadPage() {
   pages.forEach(p => p.style.display = "none");
-  pages[currentPage - 1].style.display = "block";
+
+  if (pages[currentPage - 1]) {
+    pages[currentPage - 1].style.display = "block";
+  }
 
   updateDots();
   window.scrollTo(0, 0);
 }
 
+
+// =======================
+// ● ページ丸ナビ
+// =======================
 function updateDots() {
+
   const dotContainer = document.getElementById("pageDots");
+  if (!dotContainer) return;
+
   dotContainer.innerHTML = "";
 
   for (let i = 1; i <= pages.length; i++) {
+
     const dot = document.createElement("div");
     dot.classList.add("dot");
 
@@ -60,7 +89,6 @@ function updateDots() {
       dot.classList.add("active");
     }
 
-    // ★ ここが追加部分
     dot.addEventListener("click", function () {
       currentPage = i;
       loadPage();
@@ -70,36 +98,49 @@ function updateDots() {
   }
 }
 
+
+// =======================
+// ← → ページ移動
+// =======================
 function changePage(direction) {
+
   currentPage += direction;
+
   if (currentPage < 1) currentPage = 1;
-  if (currentPage > 5) currentPage = 5;
+  if (currentPage > pages.length) currentPage = pages.length;
+
   loadPage();
 }
 
+
+// =======================
+// 🔤 フォント切替
+// =======================
 function setFont(type) {
-  const text = document.getElementById("novelText");
-  if (type === "gothic") {
-    text.style.fontFamily = "sans-serif";
-  } else {
-    text.style.fontFamily = "serif";
-  }
+
+  pages.forEach(p => {
+    if (type === "gothic") {
+      p.style.fontFamily = "sans-serif";
+    } else {
+      p.style.fontFamily = "serif";
+    }
+  });
+
 }
 
+
+// =======================
+// 🔎 サイズ変更
+// =======================
 function changeSize(amount) {
+
   fontSize += amount;
+
   if (fontSize < 12) fontSize = 12;
   if (fontSize > 24) fontSize = 24;
 
-  const pages = document.querySelectorAll(".page");
   pages.forEach(p => {
     p.style.fontSize = fontSize + "px";
   });
-}
 
-
-function handleKey(event) {
-  if (event.key === "Enter") {
-    checkPassword();
-  }
 }
