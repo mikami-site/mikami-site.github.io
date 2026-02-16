@@ -49,13 +49,13 @@ let fontSize = 17;
 
 window.addEventListener("DOMContentLoaded", function () {
 
-  // 🔒 認証チェック
-  if (document.querySelector(".page")) {
-    if (localStorage.getItem("auth") !== "ok") {
-      location.href = "enter.html";
-      return;
-    }
+// 🔒 認証チェック
+if (window.location.pathname.includes("zzz-novel00.html")) {
+  if (localStorage.getItem("auth") !== "ok") {
+    location.href = "enter.html";
   }
+}
+
 
   const pageElements = document.querySelectorAll(".page");
   pages = Array.from(pageElements);
