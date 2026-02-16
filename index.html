@@ -2,46 +2,15 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>novels</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <title>小説ガチャ</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="center">
 
-  <main class="container">
-    <h1>悠アキ小話 by 深上</h1>
+  <h1>小説ガチャ</h1>
 
-    <p class="notice">
-      ※本サイトは非公式の二次創作です。<br>
-      原作・公式・関係者様とは一切関係ありません。<br>
-<br>
-      以下のボタンを押すと、ランダムで小話が表示されます。<br>
-      小話ガチャ、全5種。
-    </p>
+  <button onclick="drawNovel()">ガチャを回す</button>
 
-    <button class="gacha-button" onclick="drawNovel()">
-      ガチャを回す
-    </button>
-  </main>
-
-  <script>
-    const novels = [
-      "novels/novel1.html",
-      "novels/novel2.html",
-      "novels/novel3.html",
-      "novels/novel4.html",
-      "novels/novel5.html"
-    ];
-
-    function drawNovel() {
-      const random = Math.floor(Math.random() * novels.length);
-      location.href = novels[random];
-    }
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
-
-
-
