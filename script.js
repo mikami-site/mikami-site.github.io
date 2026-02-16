@@ -19,23 +19,16 @@ function drawNovel() {
 // 🔐 パスワード機能
 // =======================
 function checkPassword() {
-  const pass = "0719";  // ←ここ変更可
+  const pass = "0719";
   const input = document.getElementById("passwordInput").value;
 
   if (input === pass) {
-    document.getElementById("passwordScreen").style.display = "none";
-    document.getElementById("novelContent").style.display = "block";
-    loadPage();
+    location.href = "novel0.html";
   } else {
     alert("パスワードが違います");
   }
 }
 
-function handleKey(event) {
-  if (event.key === "Enter") {
-    checkPassword();
-  }
-}
 
 
 // =======================
