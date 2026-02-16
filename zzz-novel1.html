@@ -29,11 +29,12 @@
     <button onclick="changeSize(2)">＋</button>
   </div>
 
-  <div class="pagination">
-    <button onclick="changePage(-1)">←</button>
-    <span id="pageIndicator">1 / 5</span>
-    <button onclick="changePage(1)">→</button>
-  </div>
+<div class="pagination">
+  <button onclick="changePage(-1)">←</button>
+  <div id="pageDots" class="dots"></div>
+  <button onclick="changePage(1)">→</button>
+</div>
+
 </header>
 
 <main id="novelText"></main>
