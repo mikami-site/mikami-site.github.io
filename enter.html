@@ -7,13 +7,18 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="center">
+  <body class="mincho">
 
-<h1>パスワードを入力してください</h1>
+<header class="novel-header">
+  <h1>パスワードを入力してください</h1>
+</header>
 
-<input type="password" id="passwordInput" onkeydown="handleKey(event)">
+<main class="container">
+  <input type="password" id="passwordInput" onkeydown="handleKey(event)">
 <button onclick="checkPassword()">OK</button>
 
 <script src="script.js"></script>
+</main>
+
 </body>
 </html>
