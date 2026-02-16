@@ -9,7 +9,9 @@ body {
   background: #fafafa;
   color: #222;
   text-align: center;
+  font-family: "Noto Serif JP", serif;  /* ← 追加 */
 }
+
 
 /* ===== フォント切替 ===== */
 
