@@ -90,9 +90,13 @@ function changeSize(amount) {
   fontSize += amount;
   if (fontSize < 12) fontSize = 12;
   if (fontSize > 24) fontSize = 24;
-  document.getElementById("novelText").style.fontSize =
-    fontSize + "px";
+
+  const pages = document.querySelectorAll(".page");
+  pages.forEach(p => {
+    p.style.fontSize = fontSize + "px";
+  });
 }
+
 
 function handleKey(event) {
   if (event.key === "Enter") {
