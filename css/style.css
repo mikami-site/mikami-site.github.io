@@ -94,3 +94,7 @@ button:hover {
 .dot.active {
   background: #222;
 }
+
+.page {
+  white-space: pre-line;
+}
