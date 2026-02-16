@@ -1,5 +1,5 @@
 // =======================
-// 🎲 ガチャ機能
+// 🎲 ガチャ
 // =======================
 function drawNovel() {
   const novels = [
@@ -16,19 +16,28 @@ function drawNovel() {
 
 
 // =======================
-// 🔐 パスワード機能
+// 🔐 パスワード処理
 // =======================
 function checkPassword() {
-  const pass = "0719";
+
+  const pass = "0719";  // ←変更可
   const input = document.getElementById("passwordInput").value;
 
   if (input === pass) {
-    location.href = "zzz-novel00.html";
+
+    localStorage.setItem("auth", "ok");
+    location.href = "novel0.html";
+
   } else {
     alert("パスワードが違います");
   }
 }
 
+function handleKey(event) {
+  if (event.key === "Enter") {
+    checkPassword();
+  }
+}
 
 
 // =======================
@@ -40,6 +49,14 @@ let fontSize = 17;
 
 window.addEventListener("DOMContentLoaded", function () {
 
+  // 🔒 認証チェック
+  if (document.querySelector(".page")) {
+    if (localStorage.getItem("auth") !== "ok") {
+      location.href = "enter.html";
+      return;
+    }
+  }
+
   const pageElements = document.querySelectorAll(".page");
   pages = Array.from(pageElements);
 
@@ -48,10 +65,10 @@ window.addEventListener("DOMContentLoaded", function () {
   if (pages.length > 0) {
     loadPage();
   }
-
 });
 
 function loadPage() {
+
   pages.forEach(p => p.style.display = "none");
 
   if (pages[currentPage - 1]) {
@@ -64,7 +81,7 @@ function loadPage() {
 
 
 // =======================
-// ● ページ切り替え
+// 🔢 ページ番号ナビ
 // =======================
 function updateDots() {
 
@@ -93,7 +110,6 @@ function updateDots() {
 }
 
 
-
 // =======================
 // ← → ページ移動
 // =======================
@@ -120,7 +136,6 @@ function setFont(type) {
       p.style.fontFamily = "serif";
     }
   });
-
 }
 
 
@@ -137,5 +152,4 @@ function changeSize(amount) {
   pages.forEach(p => {
     p.style.fontSize = fontSize + "px";
   });
-
 }
