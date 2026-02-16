@@ -97,3 +97,14 @@ button:hover {
 .page {
   white-space: pre-line;
 }
+
+.bottom-nav {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.bottom-nav button {
+  font-size: 16px;
+  margin: 0 20px;
+}
+
