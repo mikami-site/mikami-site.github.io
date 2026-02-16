@@ -1,5 +1,9 @@
 /* ===== 全体 ===== */
 
+html, body {
+  overscroll-behavior: none;
+}
+
 body {
   margin: 0;
   background: #fafafa;
