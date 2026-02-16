@@ -42,8 +42,8 @@ body {
 
 .container {
   max-width: 800px;
-  margin: 200px auto 40px auto; /* ←ヘッダー分余白 */
-  padding: 0 20px;
+  margin: 0 auto 40px auto;
+  padding: 220px 20px 0 20px;
 }
 
 .novel-section {
