@@ -1,8 +1,5 @@
-// =======================
 // 🎲 ガチャ
-// =======================
 function drawNovel() {
-
   const novels = [
     "novels/novel1.html",
     "novels/novel2.html",
@@ -10,17 +7,12 @@ function drawNovel() {
     "novels/novel4.html",
     "novels/novel5.html"
   ];
-
   const random = Math.floor(Math.random() * novels.length);
   location.href = novels[random];
 }
 
-
-// =======================
 // 🔐 パスワード
-// =======================
 function checkPassword() {
-
   const pass = "0719";
   const input = document.getElementById("passwordInput").value;
 
@@ -32,33 +24,24 @@ function checkPassword() {
   }
 }
 
-function handleKey(event) {
-  if (event.key === "Enter") {
-    checkPassword();
-  }
+function handleKey(e) {
+  if (e.key === "Enter") checkPassword();
 }
 
-
-// =======================
-// 📖 特別小説ページ
-// =======================
-
+// 📖 特別小説制御
 let currentPage = 1;
 let pages = [];
 let fontSize = 17;
 
 window.addEventListener("DOMContentLoaded", function () {
 
-  // ★ 特別小説だけ認証
-  if (window.location.pathname.includes("zzz-novel00.html")) {
-
+  if (location.pathname.includes("zzz-novel00.html")) {
     if (localStorage.getItem("auth") !== "ok") {
       location.href = "enter.html";
       return;
     }
   }
 
-  // ページ分割がある場合だけ処理
   pages = Array.from(document.querySelectorAll(".page"));
 
   if (pages.length > 0) {
@@ -67,79 +50,49 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-
 function loadPage() {
-
   pages.forEach(p => p.style.display = "none");
-
-  if (pages[currentPage - 1]) {
-    pages[currentPage - 1].style.display = "block";
-  }
-
-  updatePageNumbers();
+  pages[currentPage - 1].style.display = "block";
+  updateNumbers();
   window.scrollTo(0, 0);
 }
 
+function changePage(dir) {
+  currentPage += dir;
+  if (currentPage < 1) currentPage = 1;
+  if (currentPage > pages.length) currentPage = pages.length;
+  loadPage();
+}
 
-// =======================
-// 🔢 ページ番号ナビ
-// =======================
-function updatePageNumbers() {
-
-  const container = document.getElementById("pageDots");
+function updateNumbers() {
+  const container = document.getElementById("pageNumbers");
   if (!container) return;
 
   container.innerHTML = "";
 
   for (let i = 1; i <= pages.length; i++) {
+    const span = document.createElement("span");
+    span.textContent = i;
 
-    const num = document.createElement("span");
-    num.textContent = i;
-    num.classList.add("page-number");
+    if (i === currentPage) span.style.fontWeight = "bold";
 
-    if (i === currentPage) {
-      num.style.fontWeight = "bold";
-    }
-
-    num.addEventListener("click", function () {
+    span.addEventListener("click", function () {
       currentPage = i;
       loadPage();
     });
 
-    container.appendChild(num);
+    container.appendChild(span);
   }
 }
 
-
-function changePage(direction) {
-
-  currentPage += direction;
-
-  if (currentPage < 1) currentPage = 1;
-  if (currentPage > pages.length) currentPage = pages.length;
-
-  loadPage();
-}
-
-
-// =======================
-// 🔤 フォント切替
-// =======================
 function setFont(type) {
-
   pages.forEach(p => {
     p.style.fontFamily = (type === "gothic") ? "sans-serif" : "serif";
   });
 }
 
-
-// =======================
-// 🔎 サイズ変更
-// =======================
 function changeSize(amount) {
-
   fontSize += amount;
-
   if (fontSize < 12) fontSize = 12;
   if (fontSize > 24) fontSize = 24;
 
