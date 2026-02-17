@@ -6,7 +6,7 @@ body {
 
 .container {
     max-width: 700px;
-    margin: 40px auto;
+    margin: 20px auto;
     padding: 0 20px;
     text-align: center;
 }
@@ -64,4 +64,8 @@ input {
 .arrow-nav {
     text-align: center;
     margin: 20px;
+}
+
+#specialContent {
+    margin-top: 10px;
 }
