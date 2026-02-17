@@ -136,30 +136,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =========================
-   フォントサイズ（スライダー式）
+   フォント変更
 ========================== */
 
-document.addEventListener("DOMContentLoaded", () => {
-
-    const slider = document.getElementById("fontSizeSlider");
-    const sizeDisplay = document.getElementById("fontSizeDisplay");
+function changeFont(type) {
     const content = document.getElementById("specialContent");
+    if (!content) return;
 
-    if (slider && content) {
-
-        // 初期反映
-        content.style.fontSize = slider.value + "px";
-        if (sizeDisplay) {
-            sizeDisplay.textContent = slider.value + "px";
-        }
-
-        slider.addEventListener("input", () => {
-            content.style.fontSize = slider.value + "px";
-
-            if (sizeDisplay) {
-                sizeDisplay.textContent = slider.value + "px";
-            }
-        });
+    if (type === "gothic") {
+        content.style.fontFamily = "sans-serif";
+    } else {
+        content.style.fontFamily =
+            '"Hiragino Mincho ProN", "Yu Mincho", serif';
     }
+}
 
-});
+
+function changeSize(amount) {
+    const content = document.getElementById("specialContent");
+    const sizeDisplay = document.getElementById("fontSizeDisplay");
+    if (!content) return;
+
+    let size = parseInt(
+        window.getComputedStyle(content).fontSize
+    );
+
+    size += amount;
+
+    if (size < 14) size = 14;
+    if (size > 24) size = 24;
+
+    content.style.fontSize = size + "px";
+
+    if (sizeDisplay) {
+        sizeDisplay.textContent = size + "px";
+    }
+}
