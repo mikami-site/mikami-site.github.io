@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function attemptLogin() {
         const pass = passwordInput.value;
 
-        if (pass === "yourpassword") {
+        if (pass === "0719") {
             location.href = "/zzz-novel00.html";
         } else {
             document.getElementById("errorMsg").textContent =
@@ -65,3 +65,110 @@ document.addEventListener("DOMContentLoaded", () => {
     if (pages.length > 0) {
 
         function showPage(page) {
+
+            if (page < 1) page = 1;
+            if (page > totalPages) page = totalPages;
+
+            pages.forEach(el => el.classList.add("hidden"));
+            document
+                .querySelector(`.page-content[data-page="${page}"]`)
+                .classList.remove("hidden");
+
+            pageButtons.forEach(el => el.classList.remove("active"));
+            document
+                .querySelector(`.page[data-page="${page}"]`)
+                .classList.add("active");
+
+            currentPage = page;
+
+            window.scrollTo(0, 0);
+
+            updateArrows();
+        }
+
+        function updateArrows() {
+            if (!prevBtn || !nextBtn) return;
+
+            prevBtn.style.visibility =
+                currentPage === 1 ? "hidden" : "visible";
+
+            nextBtn.style.visibility =
+                currentPage === totalPages ? "hidden" : "visible";
+        }
+
+        pageButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                showPage(parseInt(btn.dataset.page));
+            });
+        });
+
+        if (prevBtn) {
+            prevBtn.addEventListener("click", () => {
+                showPage(currentPage - 1);
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener("click", () => {
+                showPage(currentPage + 1);
+            });
+        }
+
+        showPage(1);
+    }
+
+
+    /* =========================
+       フォントサイズ表示
+    ========================== */
+
+    const sizeDisplay = document.getElementById("fontSizeDisplay");
+    const content = document.getElementById("specialContent");
+
+    if (content && sizeDisplay) {
+        const initialSize = parseInt(
+            window.getComputedStyle(content).fontSize
+        );
+        sizeDisplay.textContent = initialSize + "px";
+    }
+
+});
+
+
+/* =========================
+   フォント変更
+========================== */
+
+function changeFont(type) {
+    const content = document.getElementById("specialContent");
+    if (!content) return;
+
+    if (type === "gothic") {
+        content.style.fontFamily = "sans-serif";
+    } else {
+        content.style.fontFamily =
+            '"Hiragino Mincho ProN", "Yu Mincho", serif';
+    }
+}
+
+
+function changeSize(amount) {
+    const content = document.getElementById("specialContent");
+    const sizeDisplay = document.getElementById("fontSizeDisplay");
+    if (!content) return;
+
+    let size = parseInt(
+        window.getComputedStyle(content).fontSize
+    );
+
+    size += amount;
+
+    if (size < 12) size = 12;
+    if (size > 24) size = 24;
+
+    content.style.fontSize = size + "px";
+
+    if (sizeDisplay) {
+        sizeDisplay.textContent = size + "px";
+    }
+}
