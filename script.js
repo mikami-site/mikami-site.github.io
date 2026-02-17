@@ -1,174 +1,83 @@
-document.addEventListener("DOMContentLoaded", () => {
+// ===== ガチャ =====
+const gachaBtn = document.getElementById("gachaBtn");
+if (gachaBtn) {
+    gachaBtn.addEventListener("click", () => {
+        const novels = [
+            "novels/novel1.html",
+            "novels/novel2.html",
+            "novels/novel3.html",
+            "novels/novel4.html",
+            "novels/novel5.html"
+        ];
+        const random = novels[Math.floor(Math.random() * novels.length)];
+        location.href = random;
+    });
+}
 
-    /* =========================
-       ガチャ機能
-    ========================== */
-    const gachaBtn = document.getElementById("gachaBtn");
-
-    if (gachaBtn) {
-        gachaBtn.addEventListener("click", () => {
-            const novels = [
-                "/novels/novel1.html",
-                "/novels/novel2.html",
-                "/novels/novel3.html",
-                "/novels/novel4.html",
-                "/novels/novel5.html"
-            ];
-            const random = novels[Math.floor(Math.random() * novels.length)];
-            location.href = random;
-        });
-    }
-
-
-    /* =========================
-       パスワード機能
-    ========================== */
-    const enterBtn = document.getElementById("enterBtn");
-    const passwordInput = document.getElementById("passwordInput");
-
-    function attemptLogin() {
-        const pass = passwordInput.value;
-
-        if (pass === "0719") {
-            location.href = "/zzz-novel00.html";
+// ===== パスワード =====
+const enterBtn = document.getElementById("enterBtn");
+if (enterBtn) {
+    enterBtn.addEventListener("click", () => {
+        const pass = document.getElementById("passwordInput").value;
+        if (pass === "yourpassword") {
+            location.href = "zzz-novel00.html";
         } else {
-            document.getElementById("errorMsg").textContent =
-                "パスワードが違います";
+            document.getElementById("errorMsg").textContent = "パスワードが違います";
         }
-    }
+    });
+}
 
-    if (enterBtn) {
-        enterBtn.addEventListener("click", attemptLogin);
-    }
+// ===== 特別小説ページ制御 =====
+let currentPage = 1;
 
-    if (passwordInput) {
-        passwordInput.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") {
-                attemptLogin();
-            }
-        });
-    }
+function showPage(page) {
+    document.querySelectorAll(".page-content").forEach(el => {
+        el.classList.add("hidden");
+    });
+    document.querySelector(`.page-content[data-page="${page}"]`).classList.remove("hidden");
 
+    document.querySelectorAll(".page").forEach(el => {
+        el.classList.remove("active");
+    });
+    document.querySelector(`.page[data-page="${page}"]`).classList.add("active");
 
-    /* =========================
-       特別小説ページ制御
-    ========================== */
+    currentPage = page;
+    window.scrollTo(0, 0);
+}
 
-    const pages = document.querySelectorAll(".page-content");
-    const pageButtons = document.querySelectorAll(".page");
-    const prevBtn = document.getElementById("prevPage");
-    const nextBtn = document.getElementById("nextPage");
-
-    let currentPage = 1;
-    const totalPages = 5;
-
-    if (pages.length > 0) {
-
-        function showPage(page) {
-
-            if (page < 1) page = 1;
-            if (page > totalPages) page = totalPages;
-
-            pages.forEach(el => el.classList.add("hidden"));
-            document
-                .querySelector(`.page-content[data-page="${page}"]`)
-                .classList.remove("hidden");
-
-            pageButtons.forEach(el => el.classList.remove("active"));
-            document
-                .querySelector(`.page[data-page="${page}"]`)
-                .classList.add("active");
-
-            currentPage = page;
-
-            window.scrollTo(0, 0);
-
-            updateArrows();
-        }
-
-        function updateArrows() {
-            if (!prevBtn || !nextBtn) return;
-
-            prevBtn.style.visibility =
-                currentPage === 1 ? "hidden" : "visible";
-
-            nextBtn.style.visibility =
-                currentPage === totalPages ? "hidden" : "visible";
-        }
-
-        pageButtons.forEach(btn => {
-            btn.addEventListener("click", () => {
-                showPage(parseInt(btn.dataset.page));
-            });
-        });
-
-        if (prevBtn) {
-            prevBtn.addEventListener("click", () => {
-                showPage(currentPage - 1);
-            });
-        }
-
-        if (nextBtn) {
-            nextBtn.addEventListener("click", () => {
-                showPage(currentPage + 1);
-            });
-        }
-
-        showPage(1);
-    }
-
-
-    /* =========================
-       フォントサイズ表示
-    ========================== */
-
-    const sizeDisplay = document.getElementById("fontSizeDisplay");
-    const content = document.getElementById("specialContent");
-
-    if (content && sizeDisplay) {
-        const initialSize = parseInt(
-            window.getComputedStyle(content).fontSize
-        );
-        sizeDisplay.textContent = initialSize + "px";
-    }
-
+document.querySelectorAll(".page").forEach(el => {
+    el.addEventListener("click", () => {
+        showPage(parseInt(el.dataset.page));
+    });
 });
 
+const prev = document.getElementById("prevPage");
+const next = document.getElementById("nextPage");
 
-/* =========================
-   フォント変更
-========================== */
+if (prev && next) {
+    prev.addEventListener("click", () => {
+        if (currentPage > 1) showPage(currentPage - 1);
+    });
+    next.addEventListener("click", () => {
+        if (currentPage < 5) showPage(currentPage + 1);
+    });
+}
 
+// ===== フォント変更 =====
 function changeFont(type) {
     const content = document.getElementById("specialContent");
-    if (!content) return;
-
     if (type === "gothic") {
         content.style.fontFamily = "sans-serif";
     } else {
-        content.style.fontFamily =
-            '"Hiragino Mincho ProN", "Yu Mincho", serif';
+        content.style.fontFamily = '"Hiragino Mincho ProN", "Yu Mincho", serif';
     }
 }
 
-
 function changeSize(amount) {
     const content = document.getElementById("specialContent");
-    const sizeDisplay = document.getElementById("fontSizeDisplay");
-    if (!content) return;
-
-    let size = parseInt(
-        window.getComputedStyle(content).fontSize
-    );
-
+    let size = parseInt(window.getComputedStyle(content).fontSize);
     size += amount;
-
-    if (size < 14) size = 14;
+    if (size < 12) size = 12;
     if (size > 24) size = 24;
-
     content.style.fontSize = size + "px";
-
-    if (sizeDisplay) {
-        sizeDisplay.textContent = size + "px";
-    }
 }
