@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         enterBtn.addEventListener("click", () => {
             const pass = document.getElementById("passwordInput").value;
 
-            if (pass === "yourpassword") {
+            if (pass === "0719") {
                 location.href = "/zzz-novel00.html";
             } else {
                 document.getElementById("errorMsg").textContent =
