@@ -1,3 +1,5 @@
+css
+
 body {
     margin: 0;
     background: #fff;
@@ -6,7 +8,7 @@ body {
 
 .container {
     max-width: 700px;
-    margin: 40px;
+    margin: 40px auto;
     padding: 0 20px;
     text-align: center;
 }
@@ -15,12 +17,12 @@ body {
     text-align: left;
     white-space: pre-wrap;
     font-size: 16px;
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 button {
-    padding: 6px 12px;
-    margin: 3px;
+    padding: 8px 16px;
+    margin: 5px;
     cursor: pointer;
 }
 
@@ -38,7 +40,7 @@ input {
 }
 
 .title {
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 5px;
 }
 
@@ -64,52 +66,4 @@ input {
 .arrow-nav {
     text-align: center;
     margin: 20px;
-}
-
-#specialContent {
-    margin-top: 10px;
-}
-
-h1, h2 {
-    font-weight: normal;
-    font-size: 20px;
-    margin-bottom: 20px;
-}
-
-/* ヘッダー余白広め */
-.special-header {
-    position: sticky;
-    top: 0;
-    background: white;
-    padding: 20px 10px;
-    border-bottom: 1px solid #ccc;
-    text-align: center;
-    line-height: 1.6;
-}
-
-/* ヘッダーボタン統一サイズ */
-.special-header button {
-    font-size: 14px;
-    padding: 6px 10px;
-    margin: 4px;
-}
-
-/* フォントサイズ表示 */
-#fontSizeDisplay {
-    display: inline-block;
-    width: 50px;
-    font-size: 14px;
-}
-
-/* 下部矢印 */
-.arrow-nav {
-    text-align: center;
-    margin: 40px 0;
-}
-
-.arrow-nav button {
-    font-size: 22px;
-    padding: 10px 20px;
-    margin: 0 25px;
-    border-radius: 12px;
 }
