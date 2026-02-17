@@ -75,3 +75,41 @@ h1, h2 {
     font-size: 20px;
     margin-bottom: 20px;
 }
+
+/* ヘッダー余白広め */
+.special-header {
+    position: sticky;
+    top: 0;
+    background: white;
+    padding: 20px 10px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* ヘッダーボタン統一サイズ */
+.special-header button {
+    font-size: 14px;
+    padding: 6px 10px;
+    margin: 4px;
+}
+
+/* フォントサイズ表示 */
+#fontSizeDisplay {
+    display: inline-block;
+    width: 50px;
+    font-size: 14px;
+}
+
+/* 下部矢印 */
+.arrow-nav {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.arrow-nav button {
+    font-size: 22px;
+    padding: 10px 20px;
+    margin: 0 25px;
+    border-radius: 12px;
+}
