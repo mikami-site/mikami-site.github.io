@@ -6,8 +6,8 @@ body {
 
 .container {
     max-width: 700px;
-    margin: 40px auto;
-    padding: 0 20px;
+    margin: 0 auto;      /* ← ここ重要 */
+    padding: 40px 20px;  /* ← 上下余白はpaddingで管理 */
     text-align: center;
 }
 
