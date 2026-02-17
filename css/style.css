@@ -15,12 +15,12 @@ body {
     text-align: left;
     white-space: pre-wrap;
     font-size: 16px;
-    line-height: 1.8;
+    line-height: 1.7;
 }
 
 button {
-    padding: 8px 16px;
-    margin: 5px;
+    padding: 6px 12px;
+    margin: 3px;
     cursor: pointer;
 }
 
@@ -38,7 +38,7 @@ input {
 }
 
 .title {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 5px;
 }
 
