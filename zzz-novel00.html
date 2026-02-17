@@ -12,12 +12,14 @@
 <header class="special-header">
     <div class="title">指先に灯る温度（悠アキ）</div>
 
-    <div class="controls">
-        <button onclick="changeFont('mincho')">明朝</button>
-        <button onclick="changeFont('gothic')">ゴシック</button>
-        <button onclick="changeSize(-2)">-</button>
-        <button onclick="changeSize(2)">+</button>
-    </div>
+<div class="controls">
+    <button onclick="changeFont('mincho')">明朝</button>
+    <button onclick="changeFont('gothic')">ゴシック</button>
+    <button onclick="changeSize(-2)">−</button>
+    <span id="fontSizeDisplay">16px</span>
+    <button onclick="changeSize(2)">＋</button>
+</div>
+
 
     <div class="pagination" id="pagination">
         <span class="page active" data-page="1">1</span>
