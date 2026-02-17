@@ -139,8 +139,9 @@ button:hover {
 .simple-page {
   min-height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center;   /* 横中央 */
+  align-items: flex-start;   /* ← 中央から上寄せに変更 */
+  padding-top: 80px;         /* ← 上の余白を調整 */
 }
 
 .center-container {
