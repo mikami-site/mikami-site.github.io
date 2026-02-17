@@ -1,135 +1,67 @@
-/* ===== 全体 ===== */
-
 body {
-  margin: 0;
-  background: #fafafa;
-  color: #222;
-  font-family: "Noto Serif JP", serif;
+    margin: 0;
+    background: #fff;
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
 }
-
-/* 共通中央コンテナ */
 
 .container {
-  max-width: 680px;
-  margin: 80px auto;
-  padding: 0 20px;
-  line-height: 1.7;
-  letter-spacing: 0.05em;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 0 20px;
+    text-align: center;
 }
 
-/* ===== フォント切替 ===== */
-
-.mincho {
-  font-family: "Noto Serif JP", serif;
+.novel-text {
+    text-align: left;
+    white-space: pre-wrap;
+    font-size: 16px;
+    line-height: 1.8;
 }
-
-.gothic {
-  font-family: "Noto Sans JP", sans-serif;
-}
-
-/* ===== ヘッダー ===== */
-
-.novel-header {
-  position: sticky;
-  top: 0;
-  background: #ffffff;
-  padding: 24px 0 16px 0;
-  border-bottom: 1px solid #ddd;
-  text-align: center;
-  z-index: 10;
-}
-
-.novel-header h1 {
-  margin: 0;
-  font-size: 24px;
-  font-weight: normal;
-  letter-spacing: 0.08em;
-}
-
-/* ===== ボタン ===== */
 
 button {
-  background: none;
-  border: 1px solid #ddd;
-  padding: 3px 8px;
-  margin: 0 4px;
-  font-size: 13px;
-  line-height: 1.5;
-  cursor: pointer;
-  border-radius: 4px;
+    padding: 8px 16px;
+    margin: 5px;
+    cursor: pointer;
 }
 
-button:hover {
-  background: #f7f7f7;
+input {
+    padding: 8px;
 }
 
-/* ===== ページ番号 ===== */
-
-#pageNumbers {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  margin-top: 10px;
+.special-header {
+    position: sticky;
+    top: 0;
+    background: white;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
 }
 
-#pageNumbers span {
-  cursor: pointer;
-  font-size: 14px;
+.title {
+    font-size: 20px;
+    margin-bottom: 5px;
 }
 
-.current-page {
-  color: #000;
-  font-weight: bold;
-}
-
-.other-page {
-  color: #bbb;
-}
-
-/* ===== 本文 ===== */
-
-#novelText {
-  max-width: 680px;
-  margin: 80px auto;
-  padding: 0 20px;
-  line-height: 1.7;
-  letter-spacing: 0.05em;
-  text-align: left;
+.pagination {
+    margin-top: 5px;
 }
 
 .page {
-  white-space: pre-line;
+    margin: 0 5px;
+    cursor: pointer;
+    color: gray;
 }
 
-/* ===== 下部矢印 ===== */
-
-.bottom-nav {
-  margin-top: 60px;
-  display: flex;
-  justify-content: center;
-  gap: 40px;
+.page.active {
+    color: black;
+    font-weight: bold;
 }
 
-.bottom-nav button {
-  font-size: 16px;
+.hidden {
+    display: none;
 }
 
-/* ===== スマホ調整 ===== */
-
-@media (max-width: 600px) {
-
-  .container,
-  #novelText {
-    margin: 60px auto;
-    line-height: 1.8;
-  }
-
-  .novel-header h1 {
-    font-size: 22px;
-  }
-
-  button {
-    font-size: 14px;
-    padding: 5px 10px;
-  }
+.arrow-nav {
+    text-align: center;
+    margin: 20px;
 }
