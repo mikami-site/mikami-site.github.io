@@ -1,7 +1,10 @@
 body {
     margin: 0;
     background: #fff;
-    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-family: "Hiragino Kaku Gothic ProN",
+                 "Yu Gothic",
+                 "Meiryo",
+                 sans-serif;
 }
 
 .container {
@@ -86,5 +89,13 @@ input {
 
 .page-content {
     margin: 0;
+}
+
+.controls {
+    margin-top: 10px;
+}
+
+.slider-wrap {
+    margin-top: 5px;
 }
 
