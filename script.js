@@ -84,14 +84,6 @@ if (prev && next) {
 }
 
 // ===== フォント変更 =====
-function changeFont(type) {
-    const content = document.getElementById("specialContent");
-    if (type === "gothic") {
-        content.style.fontFamily = "sans-serif";
-    } else {
-        content.style.fontFamily = '"Hiragino Mincho ProN", "Yu Mincho", serif';
-    }
-}
 
 function changeSize(amount) {
     const content = document.getElementById("specialContent");
