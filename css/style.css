@@ -4,7 +4,7 @@
 
 body {
     margin: 0;
-    background: #fff;
+    background: #f6f1e8;
     font-family: "Hiragino Kaku Gothic ProN",
                  "Yu Gothic",
                  "Meiryo",
@@ -49,7 +49,7 @@ body {
 .special-header {
     position: sticky;
     top: 0;
-    background: white;
+    background: #f6f1e8;
     padding: 18px 10px;
     border-bottom: 1px solid #ccc;
     text-align: center;
@@ -57,10 +57,12 @@ body {
 }
 
 .title {
-    font-size: 17px;
+    font-size: 20px;
     font-weight: normal;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    letter-spacing: 0.08em;
 }
+
 
 .controls {
     margin-top: 6px;
@@ -68,7 +70,7 @@ body {
 
 /* サイズボタン（小さめ・角丸なし） */
 .size-btn {
-    font-size: 13px;
+    font-size: 16px;
     padding: 4px 10px;
     margin: 0 5px;
     border-radius: 0;
