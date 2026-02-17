@@ -19,7 +19,7 @@ const enterBtn = document.getElementById("enterBtn");
 if (enterBtn) {
     enterBtn.addEventListener("click", () => {
         const pass = document.getElementById("passwordInput").value;
-        if (pass === "yourpassword") {
+        if (pass === "0719") {
             location.href = "zzz-novel00.html";
         } else {
             document.getElementById("errorMsg").textContent = "パスワードが違います";
