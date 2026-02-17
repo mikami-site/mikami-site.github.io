@@ -44,26 +44,34 @@ if (passwordInput) {
 
 // ===== 特別小説ページ制御 =====
 let currentPage = 1;
+const totalPages = 5;
 
 function showPage(page) {
-    document.querySelectorAll(".page-content").forEach(el => {
-        el.classList.add("hidden");
-    });
-    document.querySelector(`.page-content[data-page="${page}"]`).classList.remove("hidden");
 
-    document.querySelectorAll(".page").forEach(el => {
-        el.classList.remove("active");
-    });
-    document.querySelector(`.page[data-page="${page}"]`).classList.add("active");
+    if (page < 1) page = 1;
+    if (page > totalPages) page = totalPages;
+
+    pages.forEach(el => el.classList.add("hidden"));
+    document
+        .querySelector(`.page-content[data-page="${page}"]`)
+        .classList.remove("hidden");
+
+    pageButtons.forEach(el => el.classList.remove("active"));
+    document
+        .querySelector(`.page[data-page="${page}"]`)
+        .classList.add("active");
 
     currentPage = page;
-    window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "auto"
-});
 
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "auto"
+    });
+
+    updateArrows();   // ← ここ重要
 }
+
 
 document.querySelectorAll(".page").forEach(el => {
     el.addEventListener("click", () => {
