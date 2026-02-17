@@ -163,7 +163,7 @@ function changeSize(amount) {
 
     size += amount;
 
-    if (size < 12) size = 12;
+    if (size < 14) size = 14;
     if (size > 24) size = 24;
 
     content.style.fontSize = size + "px";
