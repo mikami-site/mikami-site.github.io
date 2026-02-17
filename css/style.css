@@ -119,3 +119,11 @@ body {
     width: 60px;
     box-sizing: border-box;
 }
+
+/* 小話タイトル */
+.novel-title {
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 30px;
+    letter-spacing: 0.05em;
+}
