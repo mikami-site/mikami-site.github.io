@@ -14,18 +14,33 @@ if (gachaBtn) {
     });
 }
 
-// ===== パスワード =====
+/* ===== パスワード ===== */
 const enterBtn = document.getElementById("enterBtn");
+const passwordInput = document.getElementById("passwordInput");
+
+function attemptLogin() {
+    const pass = passwordInput.value;
+
+    if (pass === "0719") {
+        location.href = "/zzz-novel00.html";
+    } else {
+        document.getElementById("errorMsg").textContent =
+            "パスワードが違います";
+    }
+}
+
 if (enterBtn) {
-    enterBtn.addEventListener("click", () => {
-        const pass = document.getElementById("passwordInput").value;
-        if (pass === "0719") {
-            location.href = "zzz-novel00.html";
-        } else {
-            document.getElementById("errorMsg").textContent = "パスワードが違います";
+    enterBtn.addEventListener("click", attemptLogin);
+}
+
+if (passwordInput) {
+    passwordInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            attemptLogin();
         }
     });
 }
+
 
 // ===== 特別小説ページ制御 =====
 let currentPage = 1;
@@ -42,7 +57,12 @@ function showPage(page) {
     document.querySelector(`.page[data-page="${page}"]`).classList.add("active");
 
     currentPage = page;
-    window.scrollTo(0, 0);
+    window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "auto"
+});
+
 }
 
 document.querySelectorAll(".page").forEach(el => {
