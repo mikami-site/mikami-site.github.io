@@ -1,14 +1,14 @@
 /* =========================
-   全体設定（明朝固定）
+   全体設定（ゴシック固定）
 ========================== */
 
 body {
     margin: 0;
     background: #fff;
-    font-family: "Hiragino Mincho ProN",
-                 "Yu Mincho",
-                 "MS Mincho",
-                 serif;
+    font-family: "Hiragino Kaku Gothic ProN",
+                 "Yu Gothic",
+                 "Meiryo",
+                 sans-serif;
 }
 
 /* 中央レイアウト */
@@ -71,7 +71,7 @@ body {
     font-size: 13px;
     padding: 4px 10px;
     margin: 0 5px;
-    border-radius: 0;     /* ← 角丸なし */
+    border-radius: 0;
 }
 
 /* サイズ表示 */
@@ -113,9 +113,7 @@ body {
     font-size: 20px;
     padding: 8px 18px;
     margin: 0 30px;
-
-    border-radius: 0;     /* ← 角丸なし */
-
-    width: 60px;          /* 位置固定 */
+    border-radius: 0;
+    width: 60px;
     box-sizing: border-box;
 }
