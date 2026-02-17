@@ -15,11 +15,16 @@
 <div class="controls">
     <button onclick="changeFont('mincho')">明朝</button>
     <button onclick="changeFont('gothic')">ゴシック</button>
-    <button onclick="changeSize(-2)">−</button>
-    <span id="fontSizeDisplay">16px</span>
-    <button onclick="changeSize(2)">＋</button>
-</div>
 
+    <div class="slider-wrap">
+        <input type="range"
+               id="fontSizeSlider"
+               min="12"
+               max="24"
+               value="16">
+        <span id="fontSizeDisplay">16px</span>
+    </div>
+</div>
 
     <div class="pagination" id="pagination">
         <span class="page active" data-page="1">1</span>
