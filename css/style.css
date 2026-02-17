@@ -50,35 +50,35 @@ body {
     position: sticky;
     top: 0;
     background: white;
-    padding: 20px 10px;
+    padding: 18px 10px;
     border-bottom: 1px solid #ccc;
     text-align: center;
     line-height: 1.6;
 }
 
 .title {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: normal;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .controls {
-    margin-top: 8px;
+    margin-top: 6px;
 }
 
-/* サイズボタン（控えめ＆均一） */
+/* サイズボタン（小さめ・角丸なし） */
 .size-btn {
-    font-size: 14px;
-    padding: 6px 12px;
-    margin: 0 6px;
-    border-radius: 6px;
+    font-size: 13px;
+    padding: 4px 10px;
+    margin: 0 5px;
+    border-radius: 0;     /* ← 角丸なし */
 }
 
 /* サイズ表示 */
 #fontSizeDisplay {
     display: inline-block;
-    width: 50px;
-    font-size: 14px;
+    width: 48px;
+    font-size: 13px;
 }
 
 /* =========================
@@ -86,11 +86,11 @@ body {
 ========================== */
 
 .pagination {
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 .page {
-    margin: 0 6px;
+    margin: 0 5px;
     cursor: pointer;
     color: gray;
 }
@@ -110,11 +110,12 @@ body {
 }
 
 .arrow-nav button {
-    font-size: 22px;
-    padding: 12px 24px;
+    font-size: 20px;
+    padding: 8px 18px;
     margin: 0 30px;
-    border-radius: 12px;
 
-    width: 70px;          /* 位置固定 */
+    border-radius: 0;     /* ← 角丸なし */
+
+    width: 60px;          /* 位置固定 */
     box-sizing: border-box;
 }
