@@ -3,24 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>認証</title>
+<title>Enter</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="mincho simple-page">
+<body>
 
-  <main class="center-container">
-    
-    <p>
-      パスワードを入力してください
-    </p>
+<div class="container">
+    <h2>パスワードを入力してください</h2>
+    <input type="password" id="passwordInput">
+    <button id="enterBtn">入室</button>
+    <p id="errorMsg"></p>
+</div>
 
-<input type="password" id="passwordInput" onkeydown="handleKey(event)">
-<button onclick="checkPassword()">OK</button>
-
-<script src="/script.js"></script>
-
-</main>
-
+<script src="script.js"></script>
 </body>
 </html>
