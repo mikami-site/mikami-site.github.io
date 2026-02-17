@@ -3,11 +3,11 @@ const gachaBtn = document.getElementById("gachaBtn");
 if (gachaBtn) {
     gachaBtn.addEventListener("click", () => {
         const novels = [
-            "novels/novel1.html",
-            "novels/novel2.html",
-            "novels/novel3.html",
-            "novels/novel4.html",
-            "novels/novel5.html"
+            "/novels/novel1.html",
+            "/novels/novel2.html",
+            "/novels/novel3.html",
+            "/novels/novel4.html",
+            "/novels/novel5.html"
         ];
         const random = novels[Math.floor(Math.random() * novels.length)];
         location.href = random;
@@ -19,7 +19,7 @@ const enterBtn = document.getElementById("enterBtn");
 if (enterBtn) {
     enterBtn.addEventListener("click", () => {
         const pass = document.getElementById("passwordInput").value;
-        if (pass === "yourpassword") {
+        if (pass === "0719") {
             location.href = "zzz-novel00.html";
         } else {
             document.getElementById("errorMsg").textContent = "パスワードが違います";
@@ -77,7 +77,7 @@ function changeSize(amount) {
     const content = document.getElementById("specialContent");
     let size = parseInt(window.getComputedStyle(content).fontSize);
     size += amount;
-    if (size < 12) size = 12;
+    if (size < 14) size = 14;
     if (size > 24) size = 24;
     content.style.fontSize = size + "px";
 }
