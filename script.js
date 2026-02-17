@@ -136,39 +136,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =========================
-   フォント変更
+   フォントサイズ（スライダー式）
 ========================== */
 
-function changeFont(type) {
-    const content = document.getElementById("specialContent");
-    if (!content) return;
+document.addEventListener("DOMContentLoaded", () => {
 
-    if (type === "gothic") {
-        content.style.fontFamily = "sans-serif";
-    } else {
-        content.style.fontFamily =
-            '"Hiragino Mincho ProN", "Yu Mincho", serif';
-    }
-}
-
-
-function changeSize(amount) {
-    const content = document.getElementById("specialContent");
+    const slider = document.getElementById("fontSizeSlider");
     const sizeDisplay = document.getElementById("fontSizeDisplay");
-    if (!content) return;
+    const content = document.getElementById("specialContent");
 
-    let size = parseInt(
-        window.getComputedStyle(content).fontSize
-    );
+    if (slider && content) {
 
-    size += amount;
+        // 初期反映
+        content.style.fontSize = slider.value + "px";
+        if (sizeDisplay) {
+            sizeDisplay.textContent = slider.value + "px";
+        }
 
-    if (size < 14) size = 14;
-    if (size > 24) size = 24;
+        slider.addEventListener("input", () => {
+            content.style.fontSize = slider.value + "px";
 
-    content.style.fontSize = size + "px";
-
-    if (sizeDisplay) {
-        sizeDisplay.textContent = size + "px";
+            if (sizeDisplay) {
+                sizeDisplay.textContent = slider.value + "px";
+            }
+        });
     }
-}
+
+});
