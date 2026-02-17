@@ -124,41 +124,41 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================
-       フォントサイズ（−＋ボタン式）
-    ========================== */
+/* =========================
+   フォントサイズ（−＋ボタン式）
+========================== */
 
-    const content = document.getElementById("specialContent");
-    const sizeDisplay = document.getElementById("fontSizeDisplay");
-    const minusBtn = document.getElementById("sizeMinus");
-    const plusBtn = document.getElementById("sizePlus");
+const content = document.getElementById("specialContent");
+const sizeDisplay = document.getElementById("fontSizeDisplay");
+const minusBtn = document.getElementById("sizeMinus");
+const plusBtn = document.getElementById("sizePlus");
 
-    if (content && sizeDisplay) {
+if (content && sizeDisplay) {
 
-        let currentSize = 16;
+    let currentSize = 16;
+    content.style.fontSize = currentSize + "px";
+    sizeDisplay.textContent = currentSize + "px";
+
+    function updateSize(newSize) {
+        if (newSize < 12) newSize = 12;
+        if (newSize > 24) newSize = 24;
+
+        currentSize = newSize;
         content.style.fontSize = currentSize + "px";
         sizeDisplay.textContent = currentSize + "px";
-
-        function updateSize(newSize) {
-            if (newSize < 12) newSize = 12;
-            if (newSize > 24) newSize = 24;
-
-            currentSize = newSize;
-            content.style.fontSize = currentSize + "px";
-            sizeDisplay.textContent = currentSize + "px";
-        }
-
-        if (minusBtn) {
-            minusBtn.addEventListener("click", () => {
-                updateSize(currentSize - 2);
-            });
-        }
-
-        if (plusBtn) {
-            plusBtn.addEventListener("click", () => {
-                updateSize(currentSize + 2);
-            });
-        }
     }
+
+    if (minusBtn) {
+        minusBtn.addEventListener("click", () => {
+            updateSize(currentSize - 2);
+        });
+    }
+
+    if (plusBtn) {
+        plusBtn.addEventListener("click", () => {
+            updateSize(currentSize + 2);
+        });
+    }
+}
 
 });
