@@ -30,12 +30,12 @@ font-family: "Hiragino Maru Gothic ProN",
     line-height: 1.8;
     font-size: 16px;
     letter-spacing: 0.03em;
+    white-space: pre-wrap;
 }
 
 /* 本文のみ改行保持 */
 .page-content {
     margin: 0;
-    white-space: pre-wrap;
 }
 
 /* 非表示ページ */
