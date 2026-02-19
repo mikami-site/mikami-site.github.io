@@ -29,12 +29,12 @@ body {
     text-align: left;
     line-height: 1.8;
     font-size: 16px;
-    white-space: pre-wrap;   /* ← これを追加 */
 }
 
 /* 本文のみ改行保持 */
 .page-content {
     margin: 0;
+    white-space: pre-wrap;
 }
 
 /* 非表示ページ */
