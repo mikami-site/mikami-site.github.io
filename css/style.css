@@ -27,7 +27,7 @@ body {
     max-width: 700px;
     margin: 0 auto;
     text-align: left;
-    line-height: 1.9;
+    line-height: 1.8;
     font-size: 16px;
     white-space: pre-wrap;   /* ← これを追加 */
 }
@@ -70,9 +70,9 @@ body {
 
 /* サイズボタン（小さめ・角丸なし） */
 .size-btn {
-    font-size: 16px;
-    padding: 4px 10px;
-    margin: 0 5px;
+    font-size: 14px;
+    padding: 3px 12px;
+    margin: 0 4px;
     border-radius: 0;
 }
 
