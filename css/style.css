@@ -1,60 +1,53 @@
 /* =========================
-   全体設定（ゴシック固定）
+   全体設定
 ========================== */
-
-html {
-    scroll-behavior: auto;
-}
 
 body {
     margin: 0;
+    padding: 0;
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
     background: #f6f1e8;
-font-family: "Hiragino Maru Gothic ProN",
-                 "Yu Gothic",
-                 "Meiryo",
-                 sans-serif;
-}
-
-/* 中央レイアウト */
-.container {
-    max-width: 700px;
-    margin: 0 auto;
+    color: #333;
     text-align: center;
 }
 
+main {
+    max-width: 720px;
+    margin: 80px auto 60px auto;
+    padding: 0 20px;
+}
 
-/* =========================
-   本文エリア
-========================== */
+@media (max-width: 600px) {
+    main {
+        padding: 0 30px;
+    }
+}
 
-.novel-text {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 0 20px 40px 20px;
-    text-align: left;
-    line-height: 1.8;
+p {
+    white-space: pre-wrap; /* コピペ改行保持 */
+    line-height: 1.9;
     font-size: 16px;
-    letter-spacing: 0.03em;
-    white-space: pre-wrap;
-}
-
-.page-content {
-    margin: 0;
-    padding: 0 !important;
-    line-height: inherit;
-    white-space: inherit;
-}
-
-.hidden {
-    display: none;
 }
 
 /* =========================
-   ヘッダー（特別小説）
+   ボタン
 ========================== */
 
+button {
+    background: #ddd;
+    border: 1px solid #aaa;
+    padding: 6px 14px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background: #ccc;
+}
+
 /* =========================
-   ヘッダー（特別小説）
+   特別小説ヘッダー
 ========================== */
 
 .special-header {
@@ -63,164 +56,73 @@ font-family: "Hiragino Maru Gothic ProN",
     left: 0;
     right: 0;
     background: #f6f1e8;
-    padding: 18px 10px;
     border-bottom: 1px solid #ccc;
-    text-align: center;
-    line-height: 1.6;
+    padding: 15px 10px;
     z-index: 1000;
 }
 
-/* ★ ここが重要 */
-.special-page #specialContent {
-    margin-top: 140px; /* ヘッダー高さ分 */
+.header-inner {
+    max-width: 720px;
+    margin: auto;
 }
 
-/* 特別ページだけ余白を制御 */
-.special-page .container {
-    padding: 0 20px 40px;
-}
-
-.title {
-    font-size: 20px;
-    font-weight: normal;
-    margin-bottom: 10px;
-    letter-spacing: 0.08em;
-}
-
-
-.controls {
-    margin-top: 6px;
-}
-
-/* サイズボタン（小さめ・角丸なし） */
-.size-btn {
-    font-size: 14px;
-    padding: 3px 12px;
-    margin: 0 4px;
-    border-radius: 0;
-}
-
-/* サイズ表示 */
-#fontSizeDisplay {
-    display: inline-block;
-    width: 48px;
-    font-size: 13px;
-}
-
-#specialContent.container {
-    padding-top: 0 !important;
-}
-
-/* =========================
-   ページ番号
-========================== */
-
-.pagination {
-    margin-top: 8px;
-}
-
-.page {
+.page-numbers span {
     margin: 0 5px;
     cursor: pointer;
-    color: gray;
+    color: #999;
 }
 
-.page.active {
-    color: black;
+.page-numbers .active {
+    color: #000;
     font-weight: bold;
 }
 
+.font-size-controls {
+    margin: 8px 0;
+}
+
 /* =========================
-   下部矢印ナビ（位置固定）
+   矢印ナビ
 ========================== */
 
 .arrow-nav {
-    text-align: center;
-    margin: 40px 0;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .arrow-nav button {
-    font-size: 20px;
-    padding: 8px 18px;
-    margin: 0 30px;
-    border-radius: 0;
-    width: 60px;
-    box-sizing: border-box;
-}
-
-/* 小話タイトル */
-.novel-title {
+    background: none;
+    border: none;
     font-size: 18px;
-    font-weight: normal;
-    margin-bottom: 30px;
-    letter-spacing: 0.05em;
 }
 
 /* =========================
-   一覧表示（スマホ対応固定最大幅）
+   画像ビューアー
 ========================== */
 
-.image-novel {
-    max-width: 800px;   /* PCでは最大800px */
-    width: 100%;        /* スマホでは画面幅に合わせる */
-    margin: 40px auto;
-    padding: 0 10px;    /* 端にくっつきすぎないように */
-    box-sizing: border-box;
+.viewer {
+    position: relative;
+    margin-top: 30px;
 }
 
-.image-novel img {
-    width: 100%;
+.viewer img {
+    max-width: 100%;
     height: auto;
-    display: block;
-    cursor: pointer;
-    margin-bottom: 20px;
 }
 
-/* =========================
-   ポップアップビューアー
-========================== */
-
-.viewer-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.95);
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-.viewer-overlay.active {
-    display: flex;
-}
-
-.viewer-overlay img {
-    max-width: 95vw;
-    max-height: 95vh;
-    object-fit: contain;
-}
-
-/* 閉じるボタン */
-.viewer-close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 32px;
-    color: white;
-    cursor: pointer;
-}
-
-/* 矢印ボタン */
-.viewer-arrow {
+.viewer button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 40px;
-    color: white;
-    cursor: pointer;
-    padding: 20px;
-    user-select: none;
+    background: rgba(255,255,255,0.6);
+    border: none;
 }
 
-.viewer-prev { left: 20px; }
-.viewer-next { right: 20px; }
+.viewer .prev {
+    left: 0;
+}
+
+.viewer .next {
+    right: 0;
+}
