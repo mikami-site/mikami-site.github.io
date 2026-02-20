@@ -11,9 +11,7 @@ if (gachaBtns.length > 0) {
     const novels = [
         "/novels/novel1.html",
         "/novels/novel2.html",
-        "/novels/novel3.html",
-        "/novels/novel4.html",
-        "/novels/novel5.html"
+        "/novels/novel3.html"
     ];
 
     gachaBtns.forEach(btn => {
