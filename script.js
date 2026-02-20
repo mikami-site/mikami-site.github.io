@@ -132,3 +132,47 @@ if (content) {
 
 
 });
+
+/* =========================
+   画像ビューアー制御（ループなし）
+========================== */
+
+const viewerImage = document.getElementById("viewerImage");
+const viewerPrev = document.getElementById("viewerPrev");
+const viewerNext = document.getElementById("viewerNext");
+
+if (viewerImage) {
+
+    const images = [
+        "/images/page1.jpg",
+        "/images/page2.jpg",
+        "/images/page3.jpg",
+        "/images/page4.jpg"
+    ];
+
+    let currentIndex = 0;
+
+    function updateImage() {
+        viewerImage.src = images[currentIndex];
+
+        // ループなし
+        viewerPrev.style.visibility = currentIndex === 0 ? "hidden" : "visible";
+        viewerNext.style.visibility = currentIndex === images.length - 1 ? "hidden" : "visible";
+    }
+
+    viewerPrev.addEventListener("click", () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateImage();
+        }
+    });
+
+    viewerNext.addEventListener("click", () => {
+        if (currentIndex < images.length - 1) {
+            currentIndex++;
+            updateImage();
+        }
+    });
+
+    updateImage();
+}
