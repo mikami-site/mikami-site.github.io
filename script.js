@@ -1,207 +1,111 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-/* =========================
-   ガチャ機能（複数ボタン対応）
-========================== */
-
-const gachaBtns = document.querySelectorAll(".gachaBtn");
-
-if (gachaBtns.length > 0) {
-    const novels = [
-        "/novels/novel1.html",
-        "/novels/novel2.html",
-        "/novels/novel3.html"
-    ];
-
-    gachaBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
+    /* =========================
+       ガチャ機能
+    ========================== */
+    const gachaBtn = document.getElementById("gachaBtn");
+    if (gachaBtn) {
+        gachaBtn.addEventListener("click", () => {
+            const novels = [
+                "/novels/novel1.html",
+                "/novels/novel2.html",
+                "/novels/novel3.html",
+                "/novels/novel4.html",
+                "/novels/novel5.html"
+            ];
             const random = novels[Math.floor(Math.random() * novels.length)];
             location.href = random;
         });
-    });
-}
-
-/* =========================
-   パスワード（Enter対応）
-========================== */
-
-const enterBtn = document.getElementById("enterBtn");
-const passwordInput = document.getElementById("passwordInput");
-
-function attemptLogin() {
-    if (!passwordInput) return;
-
-    const pass = passwordInput.value;
-    if (pass === "0719") {
-        location.href = "/zzz-novel00.html";
-    } else {
-        const errorMsg = document.getElementById("errorMsg");
-        if (errorMsg) errorMsg.textContent = "パスワードが違います";
     }
-}
 
-if (enterBtn) enterBtn.addEventListener("click", attemptLogin);
-if (passwordInput) {
-    passwordInput.addEventListener("keydown", e => {
+    /* =========================
+       パスワード（Enter対応）
+    ========================== */
+    const enterBtn = document.getElementById("enterBtn");
+    const passwordInput = document.getElementById("passwordInput");
+
+    function attemptLogin() {
+        const pass = passwordInput.value;
+        if (pass === "0719") {
+            location.href = "/zzz-novel00.html";
+        } else {
+            document.getElementById("errorMsg").textContent =
+                "パスワードが違います";
+        }
+    }
+
+    if (enterBtn) enterBtn.addEventListener("click", attemptLogin);
+    if (passwordInput) passwordInput.addEventListener("keydown", (e) => {
         if (e.key === "Enter") attemptLogin();
     });
-}
 
-/* =========================
-   特別小説ページ制御（完成版）
-========================== */
+    /* =========================
+       特別小説ページ制御
+    ========================== */
+    const pages = document.querySelectorAll(".page-content");
+    const pageButtons = document.querySelectorAll(".page");
+    const prevBtn = document.getElementById("prevPage");
+    const nextBtn = document.getElementById("nextPage");
 
-const pages = document.querySelectorAll(".page-content");
-const pageButtons = document.querySelectorAll(".page");
-const prevBtn = document.getElementById("prevPage");
-const nextBtn = document.getElementById("nextPage");
-const header = document.querySelector(".special-header");
+    let currentPage = 1;
+    const totalPages = 5;
 
-let currentPage = 1;
-const totalPages = pages.length;
+    if (pages.length > 0) {
 
-if (pages.length > 0) {
+        function showPage(page) {
+            if (page < 1) page = 1;
+            if (page > totalPages) page = totalPages;
 
-    function showPage(page) {
+            pages.forEach(el => el.classList.add("hidden"));
+            document.querySelector(`.page-content[data-page="${page}"]`).classList.remove("hidden");
 
-        if (page < 1) page = 1;
-        if (page > totalPages) page = totalPages;
+            pageButtons.forEach(el => el.classList.remove("active"));
+            document.querySelector(`.page[data-page="${page}"]`).classList.add("active");
 
-        pages.forEach(el => el.classList.add("hidden"));
-
-        const targetPage = document.querySelector(
-            `.page-content[data-page="${page}"]`
-        );
-        if (targetPage) targetPage.classList.remove("hidden");
-
-        pageButtons.forEach(el => el.classList.remove("active"));
-
-        const activeBtn = document.querySelector(
-            `.page[data-page="${page}"]`
-        );
-        if (activeBtn) activeBtn.classList.add("active");
-
-        currentPage = page;
-
-        // ★ これが一番安定
-        if (header) {
-            window.scrollTo({
-                top: header.offsetHeight,
-                behavior: "auto"
-            });
-        } else {
-            window.scrollTo(0, 0);
+            currentPage = page;
+            window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+            updateArrows();
         }
 
-        updateArrows();
-    }
-
-    function updateArrows() {
-        if (!prevBtn || !nextBtn) return;
-
-        prevBtn.style.visibility =
-            currentPage === 1 ? "hidden" : "visible";
-
-        nextBtn.style.visibility =
-            currentPage === totalPages ? "hidden" : "visible";
-    }
-
-    pageButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            showPage(parseInt(btn.dataset.page));
-        });
-    });
-
-    if (prevBtn) {
-        prevBtn.addEventListener("click", () =>
-            showPage(currentPage - 1)
-        );
-    }
-
-    if (nextBtn) {
-        nextBtn.addEventListener("click", () =>
-            showPage(currentPage + 1)
-        );
-    }
-
-    showPage(1);
-}
-
-/* =========================
-   フォントサイズ変更
-========================== */
-
-const content = document.getElementById("specialContent");
-const minusBtn = document.getElementById("sizeMinus");
-const plusBtn = document.getElementById("sizePlus");
-
-if (content) {
-
-    let currentSize = 16;
-    content.style.fontSize = currentSize + "px";
-
-    if (minusBtn) {
-        minusBtn.addEventListener("click", () => {
-            if (currentSize > 12) {
-                currentSize -= 2;
-                content.style.fontSize = currentSize + "px";
-            }
-        });
-    }
-
-    if (plusBtn) {
-        plusBtn.addEventListener("click", () => {
-            if (currentSize < 24) {
-                currentSize += 2;
-                content.style.fontSize = currentSize + "px";
-            }
-        });
-    }
-}
-
-/* =========================
-   画像ビューアー（左送り・ループなし）
-========================== */
-
-const viewerImage = document.getElementById("viewerImage");
-const viewerPrev = document.getElementById("viewerPrev");
-const viewerNext = document.getElementById("viewerNext");
-
-if (viewerImage && viewerPrev && viewerNext) {
-
-    const images = [
-        "/images/page1.jpg",
-        "/images/page2.jpg",
-        "/images/page3.jpg",
-        "/images/page4.jpg"
-    ];
-
-    let currentIndex = 0;
-
-    function updateImage() {
-        viewerImage.src = images[currentIndex];
-
-        viewerPrev.style.visibility = currentIndex === 0 ? "hidden" : "visible";
-        viewerNext.style.visibility = currentIndex === images.length - 1 ? "hidden" : "visible";
-    }
-
-    // ←（前ページ）
-    viewerPrev.addEventListener("click", () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateImage();
+        function updateArrows() {
+            if (!prevBtn || !nextBtn) return;
+            prevBtn.style.visibility = currentPage === 1 ? "hidden" : "visible";
+            nextBtn.style.visibility = currentPage === totalPages ? "hidden" : "visible";
         }
-    });
 
-    // →（次ページ）
-    viewerNext.addEventListener("click", () => {
-        if (currentIndex < images.length - 1) {
-            currentIndex++;
-            updateImage();
+        pageButtons.forEach(btn => {
+            btn.addEventListener("click", () => showPage(parseInt(btn.dataset.page)));
+        });
+
+        if (prevBtn) prevBtn.addEventListener("click", () => showPage(currentPage - 1));
+        if (nextBtn) nextBtn.addEventListener("click", () => showPage(currentPage + 1));
+
+        showPage(1);
+    }
+
+    /* =========================
+       フォントサイズ（−＋ボタン式）
+    ========================== */
+    const content = document.getElementById("specialContent");
+    const sizeDisplay = document.getElementById("fontSizeDisplay");
+    const minusBtn = document.getElementById("sizeMinus");
+    const plusBtn = document.getElementById("sizePlus");
+
+    if (content && sizeDisplay) {
+        let currentSize = 16;
+        content.style.fontSize = currentSize + "px";
+        sizeDisplay.textContent = currentSize + "px";
+
+        function updateSize(newSize) {
+            if (newSize < 12) newSize = 12;
+            if (newSize > 24) newSize = 24;
+            currentSize = newSize;
+            content.style.fontSize = currentSize + "px";
+            sizeDisplay.textContent = currentSize + "px";
         }
-    });
 
-    updateImage();
-}
+        if (minusBtn) minusBtn.addEventListener("click", () => updateSize(currentSize - 2));
+        if (plusBtn) plusBtn.addEventListener("click", () => updateSize(currentSize + 2));
+    }
 
 });
