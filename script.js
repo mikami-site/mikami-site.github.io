@@ -48,39 +48,62 @@ if (passwordInput) {
 }
 
 /* =========================
-   特別小説ページ制御
+   特別小説ページ制御（完成版）
 ========================== */
 
+const pages = document.querySelectorAll(".page-content");
+const pageButtons = document.querySelectorAll(".page");
+const prevBtn = document.getElementById("prevPage");
+const nextBtn = document.getElementById("nextPage");
 const header = document.querySelector(".special-header");
 
-function showPage(page) {
+let currentPage = 1;
+const totalPages = pages.length;
 
-    if (page < 1) page = 1;
-    if (page > totalPages) page = totalPages;
+if (pages.length > 0) {
 
-    pages.forEach(el => el.classList.add("hidden"));
-    document
-        .querySelector(`.page-content[data-page="${page}"]`)
-        .classList.remove("hidden");
+    function showPage(page) {
 
-    pageButtons.forEach(el => el.classList.remove("active"));
-    document
-        .querySelector(`.page[data-page="${page}"]`)
-        .classList.add("active");
+        if (page < 1) page = 1;
+        if (page > totalPages) page = totalPages;
 
-    currentPage = page;
+        pages.forEach(el => el.classList.add("hidden"));
 
-    // ★ ヘッダーの高さ分だけ下にスクロール
-    const headerHeight = header.offsetHeight;
-    window.scrollTo(0, headerHeight);
+        const targetPage = document.querySelector(
+            `.page-content[data-page="${page}"]`
+        );
+        if (targetPage) targetPage.classList.remove("hidden");
 
-    updateArrows();
-}
+        pageButtons.forEach(el => el.classList.remove("active"));
+
+        const activeBtn = document.querySelector(
+            `.page[data-page="${page}"]`
+        );
+        if (activeBtn) activeBtn.classList.add("active");
+
+        currentPage = page;
+
+        // ★ これが一番安定
+        if (header) {
+            window.scrollTo({
+                top: header.offsetHeight,
+                behavior: "auto"
+            });
+        } else {
+            window.scrollTo(0, 0);
+        }
+
+        updateArrows();
+    }
 
     function updateArrows() {
         if (!prevBtn || !nextBtn) return;
-        prevBtn.style.visibility = currentPage === 1 ? "hidden" : "visible";
-        nextBtn.style.visibility = currentPage === totalPages ? "hidden" : "visible";
+
+        prevBtn.style.visibility =
+            currentPage === 1 ? "hidden" : "visible";
+
+        nextBtn.style.visibility =
+            currentPage === totalPages ? "hidden" : "visible";
     }
 
     pageButtons.forEach(btn => {
@@ -89,8 +112,17 @@ function showPage(page) {
         });
     });
 
-    if (prevBtn) prevBtn.addEventListener("click", () => showPage(currentPage - 1));
-    if (nextBtn) nextBtn.addEventListener("click", () => showPage(currentPage + 1));
+    if (prevBtn) {
+        prevBtn.addEventListener("click", () =>
+            showPage(currentPage - 1)
+        );
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener("click", () =>
+            showPage(currentPage + 1)
+        );
+    }
 
     showPage(1);
 }
