@@ -76,7 +76,7 @@ if (pages.length > 0) {
         currentPage = page;
 
         // 安定スクロール
-        window.scrollTo(0, 0);
+        document.getElementById("specialContent").scrollTop = 0;
 
         updateArrows();
     }
