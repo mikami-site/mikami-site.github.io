@@ -143,7 +143,7 @@ function updateLightbox() {
         (currentImg === images.length - 1) ? "none" : "inline";
 }
 
-// ← で次へ（左へ進む）
+// ←で進む
 function nextImage() {
     if (currentImg < images.length - 1) {
         currentImg++;
@@ -151,7 +151,7 @@ function nextImage() {
     }
 }
 
-// → で戻る
+// →で戻る
 function prevImage() {
     if (currentImg > 0) {
         currentImg--;
@@ -183,15 +183,13 @@ document.addEventListener("touchend", function(e) {
 });
 
 function handleSwipe() {
-    const threshold = 50; // 最低移動距離
+    const threshold = 50;
 
     if (startX - endX > threshold) {
-        // 左スワイプ → 次へ
-        nextImage();
+        prevImage();   // 左スワイプで戻る
     }
 
     if (endX - startX > threshold) {
-        // 右スワイプ → 戻る
-        prevImage();
+        nextImage();   // 右スワイプで進む
     }
 }
