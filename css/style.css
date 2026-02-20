@@ -2,6 +2,10 @@
    全体設定（ゴシック固定）
 ========================== */
 
+html {
+    scroll-behavior: auto;
+}
+
 body {
     margin: 0;
     background: #f6f1e8;
@@ -88,6 +92,7 @@ font-family: "Hiragino Maru Gothic ProN",
 
 #specialContent {
     padding: 0;
+    margin: 0;
 }
 
 /* =========================
