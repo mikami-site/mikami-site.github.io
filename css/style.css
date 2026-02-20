@@ -33,12 +33,11 @@ font-family: "Hiragino Maru Gothic ProN",
     white-space: pre-wrap;
 }
 
-/* 本文のみ改行保持 */
 .page-content {
     margin: 0;
+    padding: 0;
 }
 
-/* 非表示ページ */
 .hidden {
     display: none;
 }
