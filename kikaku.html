@@ -3,18 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>企画</title>
+<title>画像小説ビューアー</title>
 
 <style>
 /* =========================
-   画像縦読み（通常表示）
+   一覧表示（固定サイズ）
 ========================== */
+
+.image-novel {
+    width: 800px;          /* ← 固定幅 */
+    margin: 40px auto;
+}
 
 .image-novel img {
     width: 100%;
     height: auto;
     display: block;
     cursor: pointer;
+    margin-bottom: 20px;
 }
 
 /* =========================
@@ -25,7 +31,7 @@
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.95);
     justify-content: center;
     align-items: center;
     z-index: 9999;
@@ -36,38 +42,51 @@
 }
 
 .viewer-overlay img {
-    max-width: 95%;
-    max-height: 95%;
+    max-width: 90%;
+    max-height: 90%;
 }
 
+/* 閉じるボタン */
 .viewer-close {
     position: absolute;
     top: 20px;
-    right: 25px;
-    font-size: 30px;
+    right: 30px;
+    font-size: 32px;
     color: white;
     cursor: pointer;
 }
+
+/* 矢印ボタン */
+.viewer-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    padding: 20px;
+    user-select: none;
+}
+
+.viewer-prev { left: 20px; }
+.viewer-next { right: 20px; }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-  <div class="novel-text image-novel">
-
-    <img src="images/01.png" alt="page1" loading="lazy">
-    <img src="images/02.png" alt="page2" loading="lazy">
-    <img src="images/03.png" alt="page3" loading="lazy">
-    <img src="images/03.png" alt="page3" loading="lazy">
-
-  </div>
+<div class="image-novel">
+    <img src="images/001.jpg" loading="lazy">
+    <img src="images/002.jpg" loading="lazy">
+    <img src="images/003.jpg" loading="lazy">
 </div>
 
-<!-- ポップアップ本体 -->
+<!-- ビューアー -->
 <div class="viewer-overlay" id="viewer">
-  <span class="viewer-close" id="closeBtn">&times;</span>
-  <img id="viewerImage">
+    <span class="viewer-close" id="closeBtn">&times;</span>
+    <span class="viewer-arrow viewer-prev" id="prevImg">←</span>
+    <img id="viewerImage">
+    <span class="viewer-arrow viewer-next" id="nextImg">→</span>
 </div>
 
 <script>
@@ -75,32 +94,67 @@ const images = document.querySelectorAll(".image-novel img");
 const viewer = document.getElementById("viewer");
 const viewerImage = document.getElementById("viewerImage");
 const closeBtn = document.getElementById("closeBtn");
+const prevImg = document.getElementById("prevImg");
+const nextImg = document.getElementById("nextImg");
 
-// 画像クリックで拡大
-images.forEach(img => {
+let currentIndex = 0;
+
+// 開く
+images.forEach((img, index) => {
     img.addEventListener("click", () => {
-        viewerImage.src = img.src;
+        currentIndex = index;
+        showImage();
         viewer.classList.add("active");
+        document.body.style.overflow = "hidden";
     });
 });
 
-// 閉じるボタン
-closeBtn.addEventListener("click", () => {
+function showImage() {
+    viewerImage.src = images[currentIndex].src;
+}
+
+// 次へ
+nextImg.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage();
+});
+
+// 前へ
+prevImg.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showImage();
+});
+
+// 閉じる
+closeBtn.addEventListener("click", closeViewer);
+viewer.addEventListener("click", e => {
+    if (e.target === viewer) closeViewer();
+});
+
+function closeViewer() {
     viewer.classList.remove("active");
+    document.body.style.overflow = "";
+}
+
+// キーボード操作
+document.addEventListener("keydown", e => {
+    if (!viewer.classList.contains("active")) return;
+
+    if (e.key === "ArrowRight") nextImg.click();
+    if (e.key === "ArrowLeft") prevImg.click();
+    if (e.key === "Escape") closeViewer();
 });
 
-// 背景クリックでも閉じる
-viewer.addEventListener("click", (e) => {
-    if (e.target === viewer) {
-        viewer.classList.remove("active");
-    }
+// スワイプ対応（スマホ）
+let startX = 0;
+viewer.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
 });
 
-// Escキーで閉じる
-document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-        viewer.classList.remove("active");
-    }
+viewer.addEventListener("touchend", e => {
+    let diff = e.changedTouches[0].clientX - startX;
+    if (diff > 50) prevImg.click();
+    if (diff < -50) nextImg.click();
 });
 </script>
 
