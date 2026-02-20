@@ -3,18 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>企画</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body onload="showImage(0)">
+<body>
 
 <div class="container viewer">
 
-<img id="viewerImg">
+<h2></h2>
 
-<div style="margin-top:30px;">
-  <button id="leftBtn" onclick="nextImage()">←</button>
-  <button id="rightBtn" onclick="prevImage()">→</button>
+<!-- サムネイル -->
+<img src="images/01.png" onclick="openLightbox(0)" style="max-width:100%; cursor:pointer;">
+<br><br>
+<img src="images/02.png" onclick="openLightbox(1)" style="max-width:100%; cursor:pointer;">
+<br><br>
+<img src="images/03.png" onclick="openLightbox(2)" style="max-width:100%; cursor:pointer;">
+<br><br>
+<img src="images/04.png" onclick="openLightbox(3)" style="max-width:100%; cursor:pointer;">
+
 </div>
+
+<!-- ライトボックス -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+
+  <div onclick="event.stopPropagation()">
+    <img id="lightboxImg" class="lightbox-content">
+
+    <div class="lightbox-controls">
+      <button id="lbPrev" onclick="prevImage()">←</button>
+      <button id="lbNext" onclick="nextImage()">→</button>
+    </div>
+  </div>
 
 </div>
 
