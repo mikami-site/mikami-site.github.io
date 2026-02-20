@@ -62,22 +62,19 @@ function showPage(page) {
     if (page > totalPages) page = totalPages;
 
     pages.forEach(el => el.classList.add("hidden"));
-    document.querySelector(`.page-content[data-page="${page}"]`)
+    document
+        .querySelector(`.page-content[data-page="${page}"]`)
         .classList.remove("hidden");
 
     pageButtons.forEach(el => el.classList.remove("active"));
-    document.querySelector(`.page[data-page="${page}"]`)
+    document
+        .querySelector(`.page[data-page="${page}"]`)
         .classList.add("active");
 
     currentPage = page;
 
-    const novelArea = document.getElementById("specialContent");
-    const header = document.querySelector(".special-header");
-
-    if (novelArea && header) {
-        const y = novelArea.offsetTop - header.offsetHeight;
-        window.scrollTo({ top: y, behavior: "auto" });
-    }
+    // ★ これだけにする
+    window.scrollTo(0, 0);
 
     updateArrows();
 }
