@@ -84,6 +84,10 @@ font-family: "Hiragino Maru Gothic ProN",
     font-size: 13px;
 }
 
+#specialContent {
+    padding: 0;
+}
+
 /* =========================
    ページ番号
 ========================== */
