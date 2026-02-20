@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector(`.page[data-page="${page}"]`).classList.add("active");
 
             currentPage = page;
-            window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+            novelArea.scrollIntoView();
             updateArrows();
         }
 
