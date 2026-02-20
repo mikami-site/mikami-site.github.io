@@ -129,15 +129,15 @@ font-family: "Hiragino Maru Gothic ProN",
 }
 
 /* =========================
-   画像縦読み用
+   画像縦読み専用（既存に影響なし）
 ========================== */
 
-.novel-text img {
+.image-novel img {
     width: 100%;
     height: auto;
     display: block;
 }
 
-.novel-text img + img {
-    margin-top: 0; /* 画像間の隙間を消す */
+.image-novel img + img {
+    margin-top: 0;
 }
