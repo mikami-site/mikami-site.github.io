@@ -19,9 +19,9 @@ font-family: "Hiragino Maru Gothic ProN",
 .container {
     max-width: 700px;
     margin: 0 auto;
-    padding: 40px 20px;
     text-align: center;
 }
+
 
 /* =========================
    本文エリア
@@ -30,7 +30,7 @@ font-family: "Hiragino Maru Gothic ProN",
 .novel-text {
     max-width: 700px;
     margin: 0 auto;
-    padding: 0 !important;
+    padding: 0 20px 40px 20px;
     text-align: left;
     line-height: 1.8;
     font-size: 16px;
@@ -92,9 +92,8 @@ font-family: "Hiragino Maru Gothic ProN",
     font-size: 13px;
 }
 
-#specialContent {
-    padding: 0;
-    margin-top: 120px;
+#specialContent.container {
+    padding-top: 0 !important;
 }
 
 /* =========================
