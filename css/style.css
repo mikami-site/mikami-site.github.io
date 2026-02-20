@@ -148,17 +148,49 @@ font-family: "Hiragino Maru Gothic ProN",
 }
 
 /* =========================
-   固定サイズ画像ビューアー
+   固定サイズ画像ビューアー（完成版）
 ========================== */
 
 .fixed-viewer {
-    width: 800px;
+    position: relative;
+
+    max-width: 800px;
+    width: 100%;
     margin: 40px auto;
     background: #111;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 .fixed-viewer img {
     width: 100%;
+    max-width: 800px;
     height: auto;
     display: block;
+}
+
+/* 矢印 */
+.viewer-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+.viewer-arrow.left {
+    left: 10px;
+}
+
+.viewer-arrow.right {
+    right: 10px;
 }
