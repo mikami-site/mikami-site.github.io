@@ -112,18 +112,26 @@ const images = [
 
 function showImage(index) {
     if (index < 0 || index >= images.length) return;
+
     currentImg = index;
     document.getElementById("viewerImg").src = images[currentImg];
+
+    // ボタン表示制御（ループなし）
+    document.getElementById("leftBtn").style.display =
+        (currentImg === images.length - 1) ? "none" : "inline-block";
+
+    document.getElementById("rightBtn").style.display =
+        (currentImg === 0) ? "none" : "inline-block";
+
+    window.scrollTo(0, 0);
 }
 
+// ← で次へ進む
 function nextImage() {
-    if (currentImg < images.length - 1) {
-        showImage(currentImg + 1);
-    }
+    showImage(currentImg + 1);
 }
 
+// → で前へ戻る
 function prevImage() {
-    if (currentImg > 0) {
-        showImage(currentImg - 1);
-    }
+    showImage(currentImg - 1);
 }
