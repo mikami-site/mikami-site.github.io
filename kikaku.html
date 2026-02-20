@@ -3,23 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>企画</title></title>
-<link rel="stylesheet" href="style.css">
+<title>企画</title>
+
+<style>
+/* =========================
+   画像縦読み（通常表示）
+========================== */
+
+.image-novel img {
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: pointer;
+}
+
+/* =========================
+   ポップアップビューアー
+========================== */
+
+.viewer-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.viewer-overlay.active {
+    display: flex;
+}
+
+.viewer-overlay img {
+    max-width: 95%;
+    max-height: 95%;
+}
+
+.viewer-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+</style>
 </head>
+
 <body>
 
 <div class="container">
   <div class="novel-text image-novel">
 
-    <div class="fixed-viewer">
-      <img src="images/01.png" loading="lazy">
-      <img src="images/02.png" loading="lazy">
-      <img src="images/03.png" loading="lazy">
-      <img src="images/04.png" loading="lazy">
-    </div>
+    <img src="images/01.png" alt="page1" loading="lazy">
+    <img src="images/02.png" alt="page2" loading="lazy">
+    <img src="images/03.png" alt="page3" loading="lazy">
+    <img src="images/03.png" alt="page3" loading="lazy">
 
   </div>
 </div>
+
+<!-- ポップアップ本体 -->
+<div class="viewer-overlay" id="viewer">
+  <span class="viewer-close" id="closeBtn">&times;</span>
+  <img id="viewerImage">
+</div>
+
+<script>
+const images = document.querySelectorAll(".image-novel img");
+const viewer = document.getElementById("viewer");
+const viewerImage = document.getElementById("viewerImage");
+const closeBtn = document.getElementById("closeBtn");
+
+// 画像クリックで拡大
+images.forEach(img => {
+    img.addEventListener("click", () => {
+        viewerImage.src = img.src;
+        viewer.classList.add("active");
+    });
+});
+
+// 閉じるボタン
+closeBtn.addEventListener("click", () => {
+    viewer.classList.remove("active");
+});
+
+// 背景クリックでも閉じる
+viewer.addEventListener("click", (e) => {
+    if (e.target === viewer) {
+        viewer.classList.remove("active");
+    }
+});
+
+// Escキーで閉じる
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        viewer.classList.remove("active");
+    }
+});
+</script>
 
 </body>
 </html>
