@@ -53,6 +53,10 @@ font-family: "Hiragino Maru Gothic ProN",
    ヘッダー（特別小説）
 ========================== */
 
+/* =========================
+   ヘッダー（特別小説）
+========================== */
+
 .special-header {
     position: fixed;
     top: 0;
@@ -63,6 +67,17 @@ font-family: "Hiragino Maru Gothic ProN",
     border-bottom: 1px solid #ccc;
     text-align: center;
     line-height: 1.6;
+    z-index: 1000;
+}
+
+/* ★ ここが重要 */
+.special-page #specialContent {
+    margin-top: 140px; /* ヘッダー高さ分 */
+}
+
+/* 特別ページだけ余白を制御 */
+.special-page .container {
+    padding: 0 20px 40px;
 }
 
 .title {
