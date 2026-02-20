@@ -24,15 +24,14 @@
 </div>
 
 <!-- ライトボックス -->
-<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+<div id="lightbox" class="lightbox">
 
-  <div onclick="event.stopPropagation()">
-    <img id="lightboxImg" class="lightbox-content">
+  <img id="lightboxImg" class="lightbox-content"
+       onclick="closeLightbox()">
 
-    <div class="lightbox-controls">
+  <div class="lightbox-controls">
       <button id="lbPrev" onclick="prevImage()">←</button>
       <button id="lbNext" onclick="nextImage()">→</button>
-    </div>
   </div>
 
 </div>
