@@ -57,7 +57,7 @@ if (gachaBtns.length > 0) {
 
     if (pages.length > 0) {
 
-        function showPage(page) {
+function showPage(page) {
     if (page < 1) page = 1;
     if (page > totalPages) page = totalPages;
 
@@ -71,11 +71,13 @@ if (gachaBtns.length > 0) {
 
     currentPage = page;
 
-const novelArea = document.getElementById("specialContent");
-if (novelArea) {
-    const y = novelArea.getBoundingClientRect().top + window.pageYOffset - 80;
-    window.scrollTo({ top: y, behavior: "auto" });
-}
+    const novelArea = document.getElementById("specialContent");
+    const header = document.querySelector(".special-header");
+
+    if (novelArea && header) {
+        const y = novelArea.offsetTop - header.offsetHeight;
+        window.scrollTo({ top: y, behavior: "auto" });
+    }
 
     updateArrows();
 }
