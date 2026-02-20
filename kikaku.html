@@ -2,19 +2,21 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"
-<title>企画</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body onload="showImage(0)">
 
 <div class="container viewer">
 
-<h2>お題「甘える」　セリフ「こっちおいで」</h2>
+<p>お題「甘える」　セリフ「こっちおいで」</p>p
 
-<button onclick="prevImage()">←</button>
 <img id="viewerImg">
-<button onclick="nextImage()">→</button>
+
+<div style="margin-top:30px;">
+  <button id="leftBtn" onclick="nextImage()">←</button>
+  <button id="rightBtn" onclick="prevImage()">→</button>
+</div>
 
 </div>
 
