@@ -24,16 +24,19 @@
 </div>
 
 <!-- ライトボックス -->
-<div id="lightbox" class="lightbox">
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
 
-  <div class="lightbox-inner">
+  <div class="lightbox-inner" onclick="event.stopPropagation()">
 
+      <!-- 画像をクリックすると次へ進む -->
       <img id="lightboxImg"
            class="lightbox-content"
-           onclick="closeLightbox()">
+           onclick="nextImage()">
+
+      <!-- ×ボタンで閉じる -->
+      <button id="lbClose" onclick="closeLightbox()" style="position:absolute; top:10px; right:10px; font-size:24px; background:none; border:none; color:white; cursor:pointer;">×</button>
 
       <div class="lightbox-controls">
-          <!-- ボタンの関数を入れ替える -->
           <button id="lbPrev" onclick="nextImage()">←</button>
           <button id="lbNext" onclick="prevImage()">→</button>
       </div>
