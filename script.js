@@ -134,13 +134,19 @@ function closeLightbox() {
 }
 
 function updateLightbox() {
-    document.getElementById("lightboxImg").src = images[currentImg];
+    const img = document.getElementById("lightboxImg");
+    img.src = images[currentImg];
 
-    document.getElementById("lbPrev").style.display =
-        (currentImg === 0) ? "none" : "inline";
+    const lbPrev = document.getElementById("lbPrev");
+    const lbNext = document.getElementById("lbNext");
 
-    document.getElementById("lbNext").style.display =
-        (currentImg === images.length - 1) ? "none" : "inline";
+    // ボタン表示（ループなし）
+    lbPrev.style.display = (currentImg === images.length - 1) ? "none" : "inline";
+    lbNext.style.display = (currentImg === 0) ? "none" : "inline";
+
+    // 常に統一：左で進む、右で戻る
+    lbPrev.onclick = function() { nextImage(); }; // ←で進む
+    lbNext.onclick = function() { prevImage(); }; // →で戻る
 }
 
 // ←で進む
