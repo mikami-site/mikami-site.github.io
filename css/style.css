@@ -1,67 +1,81 @@
+/* =========================
+   全体設定
+========================= */
+
 body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  background: #f5f5f5;
-  color: #333;
-  text-align: center;
+    margin: 0;
+    padding: 0;
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    text-align: center;
+    background-color: #f8f8f8;
+    color: #333;
 }
 
+/* スマホ時の左右余白 */
 .container {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 20px 30px;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px 5vw;
 }
 
+/* 本文は改行をそのまま反映 */
 .novel-text {
-  white-space: pre-wrap;
-  text-align: left;
-  line-height: 1.9;
-  margin-top: 20px;
-  font-size: 16px;
+    white-space: pre-wrap;
+    text-align: left;
+    line-height: 1.9;
 }
 
+/* ボタン */
 button {
-  padding: 6px 14px;
-  font-size: 14px;
-  background: #ddd;
-  border: 1px solid #bbb;
-  cursor: pointer;
-  margin: 10px 4px;
+    padding: 6px 14px;
+    font-size: 14px;
+    border: 1px solid #999;
+    background: white;
+    cursor: pointer;
 }
 
 button:hover {
-  background: #ccc;
+    background: #eee;
 }
 
-input {
-  padding: 6px;
-  font-size: 14px;
+/* ヘッダー（特別小説用） */
+.header-fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    z-index: 1000;
 }
 
-header {
-  position: sticky;
-  top: 0;
-  background: #f5f5f5;
-  padding: 10px 0;
-  border-bottom: 1px solid #ccc;
+.header-inner {
+    max-width: 800px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.page-nav span {
-  margin: 0 6px;
-  cursor: pointer;
-  color: #999;
+/* ページ番号 */
+.page-number span {
+    margin: 0 4px;
+    cursor: pointer;
+    color: #aaa;
 }
 
-.page-nav .active {
-  color: #000;
-  font-weight: bold;
+.page-number .active {
+    color: #000;
+    font-weight: bold;
 }
 
+/* 特別小説本文 */
+.special-content {
+    margin-top: 100px;
+}
+
+/* 画像ビューアー */
 .viewer img {
-  max-width: 100%;
-  height: auto;
-}
-
-.arrow-btn {
-  font-size: 18px;
+    max-width: 100%;
+    height: auto;
 }
