@@ -99,8 +99,8 @@ function prevPage() {
     showPage(currentPage - 1);
 }
 // ======================
-// 画像ビューアー
-// ======================
+// 画像ビューアー（ライトボックス）
+/* ====================== */
 
 let currentImg = 0;
 const images = [
@@ -110,28 +110,36 @@ const images = [
     "images/04.png"
 ];
 
-function showImage(index) {
-    if (index < 0 || index >= images.length) return;
-
+function openLightbox(index) {
     currentImg = index;
-    document.getElementById("viewerImg").src = images[currentImg];
-
-    // ボタン表示制御（ループなし）
-    document.getElementById("leftBtn").style.display =
-        (currentImg === images.length - 1) ? "none" : "inline-block";
-
-    document.getElementById("rightBtn").style.display =
-        (currentImg === 0) ? "none" : "inline-block";
-
-    window.scrollTo(0, 0);
+    document.getElementById("lightbox").style.display = "flex";
+    updateLightbox();
 }
 
-// ← で次へ進む
+function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+}
+
+function updateLightbox() {
+    document.getElementById("lightboxImg").src = images[currentImg];
+
+    document.getElementById("lbPrev").style.display =
+        (currentImg === 0) ? "none" : "inline";
+
+    document.getElementById("lbNext").style.display =
+        (currentImg === images.length - 1) ? "none" : "inline";
+}
+
 function nextImage() {
-    showImage(currentImg + 1);
+    if (currentImg < images.length - 1) {
+        currentImg++;
+        updateLightbox();
+    }
 }
 
-// → で前へ戻る
 function prevImage() {
-    showImage(currentImg - 1);
+    if (currentImg > 0) {
+        currentImg--;
+        updateLightbox();
+    }
 }
