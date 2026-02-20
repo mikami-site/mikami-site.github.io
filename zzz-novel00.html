@@ -30,13 +30,18 @@
 
 <div id="specialText" class="novel-text">
 
-<div id="page1">1ページ目本文</div><div id="page2" style="display:none;">2ページ目本文</div><div id="page3" style="display:none;">3ページ目本文</div><div id="page4" style="display:none;">4ページ目本文</div><div id="page5" style="display:none;">5ページ目本文</div>
+<div class="page" id="page1">1ページ目本文</div>
+<div class="page" id="page2">2ページ目本文</div>
+<div class="page" id="page3">3ページ目本文</div>
+<div class="page" id="page4">4ページ目本文</div>
+<div class="page" id="page5">5ページ目本文</div>
 
 </div>
 
-<br>
-<button onclick="showPage(currentPage-1)">←</button>
-<button onclick="showPage(currentPage+1)">→</button>
+<div style="margin-top:40px;">
+  <button id="prevBtn" onclick="prevPage()">←</button>
+  <button id="nextBtn" onclick="nextPage()">→</button>
+</div>
 
 </div>
 
