@@ -47,6 +47,16 @@ function checkPassword() {
 }
 
 // ======================
+// Enterキーで入室
+// ======================
+
+function handleEnter(event) {
+    if (event.key === "Enter") {
+        checkPassword();
+    }
+}
+
+// ======================
 // 文字サイズ変更
 // ======================
 
