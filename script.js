@@ -64,21 +64,40 @@ function changeSize(diff) {
 // ======================
 
 let currentPage = 1;
+const totalPages = 5;
 
 function showPage(num) {
+    if (num < 1 || num > totalPages) return;
+
     currentPage = num;
 
-    for (let i = 1; i <= 5; i++) {
-        document.getElementById("page" + i).style.display = "none";
-        document.getElementById("num" + i).classList.remove("active");
-    }
+    const pages = document.querySelectorAll(".page");
+    pages.forEach(p => p.style.display = "none");
 
     document.getElementById("page" + num).style.display = "block";
+
+    for (let i = 1; i <= totalPages; i++) {
+        document.getElementById("num" + i).classList.remove("active");
+    }
     document.getElementById("num" + num).classList.add("active");
+
+    // ボタン表示制御
+    document.getElementById("prevBtn").style.display =
+        (num === 1) ? "none" : "inline-block";
+
+    document.getElementById("nextBtn").style.display =
+        (num === totalPages) ? "none" : "inline-block";
 
     window.scrollTo(0, 0);
 }
 
+function nextPage() {
+    showPage(currentPage + 1);
+}
+
+function prevPage() {
+    showPage(currentPage - 1);
+}
 // ======================
 // 画像ビューアー
 // ======================
