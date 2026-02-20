@@ -58,19 +58,27 @@ if (gachaBtns.length > 0) {
     if (pages.length > 0) {
 
         function showPage(page) {
-            if (page < 1) page = 1;
-            if (page > totalPages) page = totalPages;
+    if (page < 1) page = 1;
+    if (page > totalPages) page = totalPages;
 
-            pages.forEach(el => el.classList.add("hidden"));
-            document.querySelector(`.page-content[data-page="${page}"]`).classList.remove("hidden");
+    pages.forEach(el => el.classList.add("hidden"));
+    document.querySelector(`.page-content[data-page="${page}"]`)
+        .classList.remove("hidden");
 
-            pageButtons.forEach(el => el.classList.remove("active"));
-            document.querySelector(`.page[data-page="${page}"]`).classList.add("active");
+    pageButtons.forEach(el => el.classList.remove("active"));
+    document.querySelector(`.page[data-page="${page}"]`)
+        .classList.add("active");
 
-            currentPage = page;
-            novelArea.scrollIntoView();
-            updateArrows();
-        }
+    currentPage = page;
+
+const novelArea = document.getElementById("specialContent");
+if (novelArea) {
+    const y = novelArea.getBoundingClientRect().top + window.pageYOffset - 80;
+    window.scrollTo({ top: y, behavior: "auto" });
+}
+
+    updateArrows();
+}
 
         function updateArrows() {
             if (!prevBtn || !nextBtn) return;
