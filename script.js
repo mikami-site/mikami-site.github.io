@@ -145,8 +145,8 @@ function updateLightbox() {
     lbNext.style.display = (currentImg === 0) ? "none" : "inline";
 
     // 常に統一：左で進む、右で戻る
-    lbPrev.onclick = function() { nextImage(); }; // ←で進む
-    lbNext.onclick = function() { prevImage(); }; // →で戻る
+    lbPrev.onclick = function() { nextImage(); };
+    lbNext.onclick = function() { prevImage(); };
 }
 
 // ←で進む
