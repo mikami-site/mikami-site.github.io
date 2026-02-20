@@ -61,25 +61,33 @@ if (pages.length > 0) {
     let currentPage = 1;
     const totalPages = pages.length;
 
-    function showPage(page) {
-        if (page < 1) page = 1;
-        if (page > totalPages) page = totalPages;
+function showPage(page) {
+    if (page < 1) page = 1;
+    if (page > totalPages) page = totalPages;
 
-        pages.forEach(el => el.classList.add("hidden"));
-        const target = document.querySelector(`.page-content[data-page="${page}"]`);
-        if (target) target.classList.remove("hidden");
+    pages.forEach(el => el.classList.add("hidden"));
+    document
+        .querySelector(`.page-content[data-page="${page}"]`)
+        .classList.remove("hidden");
 
-        pageButtons.forEach(el => el.classList.remove("active"));
-        const activeBtn = document.querySelector(`.page[data-page="${page}"]`);
-        if (activeBtn) activeBtn.classList.add("active");
+    pageButtons.forEach(el => el.classList.remove("active"));
+    document
+        .querySelector(`.page[data-page="${page}"]`)
+        .classList.add("active");
 
-        currentPage = page;
+    currentPage = page;
 
-        // 安定スクロール
-        document.getElementById("specialContent").scrollTop = 0;
+    // 🔥 ここが重要
+    const special = document.getElementById("specialContent");
+    const header = document.querySelector(".special-header");
 
-        updateArrows();
+    if (special && header) {
+        const y = special.offsetTop - header.offsetHeight;
+        window.scrollTo({ top: y, behavior: "auto" });
     }
+
+    updateArrows();
+}
 
     function updateArrows() {
         if (!prevBtn || !nextBtn) return;
