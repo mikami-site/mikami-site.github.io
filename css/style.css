@@ -22,7 +22,8 @@ body {
 .novel-text {
     white-space: pre-wrap;
     text-align: left;
-    line-height: 1.9;
+    line-height: 2;
+    letter-spacing: 0.05em;
 }
 
 /* ボタン */
@@ -78,4 +79,41 @@ button:hover {
 .viewer img {
     max-width: 100%;
     height: auto;
+}
+
+/* =========================
+   スマホ最適化
+========================= */
+
+@media screen and (max-width: 600px) {
+
+    body {
+        font-size: 15px;
+    }
+
+    .container {
+        padding: 20px 6vw;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    button {
+        font-size: 13px;
+        padding: 6px 12px;
+    }
+
+    .header-inner {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .special-content {
+        margin-top: 130px;
+    }
 }
