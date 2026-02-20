@@ -47,13 +47,13 @@ button:hover {
 }
 
 .top-btn {
-    background-color: white;   /* 背景を白に */
-    color: black;              /* 文字色を黒に */
-    border: 1px solid #ccc;    /* 必要に応じて枠線を追加 */
+    background-color: white !important;  /* 背景を白に */
+    color: black !important;             /* 文字色を黒に */
+    border: 1px solid #ccc;              /* 枠線 */
 }
 
 .top-btn:hover {
-    background-color: #eee;    /* ホバー時の色を少し変える */
+    background-color: #eee !important;   /* ホバー時 */
 }
 
 .novel-btn {
