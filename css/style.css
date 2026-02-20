@@ -127,3 +127,17 @@ font-family: "Hiragino Maru Gothic ProN",
     margin-bottom: 30px;
     letter-spacing: 0.05em;
 }
+
+/* =========================
+   画像縦読み用
+========================== */
+
+.novel-text img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.novel-text img + img {
+    margin-top: 0; /* 画像間の隙間を消す */
+}
