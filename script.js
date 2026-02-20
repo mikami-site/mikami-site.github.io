@@ -13,6 +13,27 @@ function drawGacha() {
 }
 
 // ======================
+// 小話ページ内ガチャ
+// ======================
+
+function redrawGacha() {
+    const novels = [
+        "novel1.html",
+        "novel2.html",
+        "novel3.html"
+    ];
+
+    const current = location.pathname.split("/").pop();
+
+    // 今表示中のページを除外
+    const filtered = novels.filter(n => n !== current);
+
+    const random = Math.floor(Math.random() * filtered.length);
+
+    location.href = filtered[random];
+}
+
+// ======================
 // パスワード判定
 // ======================
 
