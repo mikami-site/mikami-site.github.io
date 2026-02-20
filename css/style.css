@@ -141,3 +141,19 @@ font-family: "Hiragino Maru Gothic ProN",
 .image-novel img + img {
     margin-top: 0;
 }
+
+/* =========================
+   固定サイズ画像ビューアー
+========================== */
+
+.fixed-viewer {
+    width: 800px;
+    margin: 40px auto;
+    background: #111;
+}
+
+.fixed-viewer img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
