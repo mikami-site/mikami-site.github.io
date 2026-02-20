@@ -99,10 +99,13 @@ function prevPage() {
     showPage(currentPage - 1);
 }
 // ======================
-// 画像ビューアー（ライトボックス）
-/* ====================== */
+// 画像ビューアー（強化版ライトボックス）
+// ======================
 
 let currentImg = 0;
+let startX = 0;
+let endX = 0;
+
 const images = [
     "images/01.png",
     "images/02.png",
@@ -130,6 +133,7 @@ function updateLightbox() {
         (currentImg === images.length - 1) ? "none" : "inline";
 }
 
+// ← で次へ（左へ進む）
 function nextImage() {
     if (currentImg < images.length - 1) {
         currentImg++;
@@ -137,9 +141,47 @@ function nextImage() {
     }
 }
 
+// → で戻る
 function prevImage() {
     if (currentImg > 0) {
         currentImg--;
         updateLightbox();
+    }
+}
+
+/* ======================
+   Escキーで閉じる
+====================== */
+
+document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") {
+        closeLightbox();
+    }
+});
+
+/* ======================
+   スワイプ操作
+====================== */
+
+document.addEventListener("touchstart", function(e) {
+    startX = e.changedTouches[0].screenX;
+});
+
+document.addEventListener("touchend", function(e) {
+    endX = e.changedTouches[0].screenX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    const threshold = 50; // 最低移動距離
+
+    if (startX - endX > threshold) {
+        // 左スワイプ → 次へ
+        nextImage();
+    }
+
+    if (endX - startX > threshold) {
+        // 右スワイプ → 戻る
+        prevImage();
     }
 }
