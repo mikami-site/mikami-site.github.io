@@ -26,18 +26,19 @@ font-family: "Hiragino Maru Gothic ProN",
 .novel-text {
     max-width: 700px;
     margin: 0 auto;
+    padding: 0;
     text-align: left;
     line-height: 1.8;
     font-size: 16px;
     letter-spacing: 0.03em;
     white-space: pre-wrap;
-    scroll-margin-top: 120px;
 }
 
 .page-content {
     margin: 0;
     padding: 0;
-    white-space: pre-line;
+    line-height: inherit;
+    white-space: inherit;
 }
 
 .hidden {
