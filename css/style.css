@@ -136,63 +136,70 @@ font-family: "Hiragino Maru Gothic ProN",
 }
 
 /* =========================
-   画像縦読み専用（既存に影響なし）
+   一覧表示（スマホ対応固定最大幅）
 ========================== */
+
+.image-novel {
+    max-width: 800px;   /* PCでは最大800px */
+    width: 100%;        /* スマホでは画面幅に合わせる */
+    margin: 40px auto;
+    padding: 0 10px;    /* 端にくっつきすぎないように */
+    box-sizing: border-box;
+}
 
 .image-novel img {
     width: 100%;
     height: auto;
     display: block;
-}
-
-.image-novel img + img {
-    margin-top: 0;
+    cursor: pointer;
+    margin-bottom: 20px;
 }
 
 /* =========================
-   固定サイズ画像ビューアー（完成版）
+   ポップアップビューアー
 ========================== */
 
-.fixed-viewer {
-    position: relative;
-
-    max-width: 800px;
-    width: 100%;
-    margin: 40px auto;
-    background: #111;
-
-    display: flex;
+.viewer-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
     justify-content: center;
     align-items: center;
-
-    overflow: hidden;
-    box-sizing: border-box;
+    z-index: 9999;
 }
 
-.fixed-viewer img {
-    width: 100%;
-    max-width: 800px;
-    height: auto;
-    display: block;
+.viewer-overlay.active {
+    display: flex;
 }
 
-/* 矢印 */
+.viewer-overlay img {
+    max-width: 95vw;
+    max-height: 95vh;
+    object-fit: contain;
+}
+
+/* 閉じるボタン */
+.viewer-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+}
+
+/* 矢印ボタン */
 .viewer-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
+    font-size: 40px;
     color: white;
-    border: none;
-    font-size: 24px;
-    padding: 10px 14px;
     cursor: pointer;
+    padding: 20px;
+    user-select: none;
 }
 
-.viewer-arrow.left {
-    left: 10px;
-}
-
-.viewer-arrow.right {
-    right: 10px;
-}
+.viewer-prev { left: 20px; }
+.viewer-next { right: 20px; }
