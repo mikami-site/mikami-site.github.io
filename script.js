@@ -51,17 +51,10 @@ if (passwordInput) {
    特別小説ページ制御
 ========================== */
 
-const pages = document.querySelectorAll(".page-content");
-const pageButtons = document.querySelectorAll(".page");
-const prevBtn = document.getElementById("prevPage");
-const nextBtn = document.getElementById("nextPage");
-
-if (pages.length > 0) {
-
-    let currentPage = 1;
-    const totalPages = pages.length;
+const header = document.querySelector(".special-header");
 
 function showPage(page) {
+
     if (page < 1) page = 1;
     if (page > totalPages) page = totalPages;
 
@@ -77,14 +70,9 @@ function showPage(page) {
 
     currentPage = page;
 
-    // 🔥 ここが重要
-    const special = document.getElementById("specialContent");
-    const header = document.querySelector(".special-header");
-
-    if (special && header) {
-        const y = special.offsetTop - header.offsetHeight;
-        window.scrollTo({ top: y, behavior: "auto" });
-    }
+    // ★ ヘッダーの高さ分だけ下にスクロール
+    const headerHeight = header.offsetHeight;
+    window.scrollTo(0, headerHeight);
 
     updateArrows();
 }
