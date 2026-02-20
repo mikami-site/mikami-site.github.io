@@ -1,7 +1,8 @@
-// =========================
+// ======================
 // 小説ガチャ
-// =========================
-function drawNovel() {
+// ======================
+
+function drawGacha() {
     const novels = [
         "novels/novel1.html",
         "novels/novel2.html",
@@ -11,59 +12,57 @@ function drawNovel() {
     location.href = novels[random];
 }
 
-// =========================
-// パスワード
-// =========================
+// ======================
+// パスワード判定
+// ======================
+
 function checkPassword() {
-    const input = document.getElementById("password").value;
-    if (input === "moon") {  // ←好きなパスに変更
+    const pass = document.getElementById("password").value;
+    if (pass === "0719") {
         location.href = "zzz-novel00.html";
     } else {
         alert("パスワードが違います");
     }
 }
 
-// =========================
-// 特別小説ページ管理
-// =========================
-let currentPage = 1;
-let fontSize = 16;
-const totalPages = 5;
+// ======================
+// 文字サイズ変更
+// ======================
 
-function changeFontSize(delta) {
-    fontSize += delta;
+let fontSize = 16;
+
+function changeSize(diff) {
+    fontSize += diff;
     if (fontSize < 12) fontSize = 12;
     if (fontSize > 24) fontSize = 24;
-    document.getElementById("special-text").style.fontSize = fontSize + "px";
+    document.getElementById("specialText").style.fontSize = fontSize + "px";
 }
 
-function goToPage(page) {
-    if (page < 1 || page > totalPages) return;
-    currentPage = page;
+// ======================
+// 特別小説ページ切替
+// ======================
 
-    document.querySelectorAll(".page-content").forEach((el, index) => {
-        el.style.display = (index === page - 1) ? "block" : "none";
-    });
+let currentPage = 1;
 
-    document.querySelectorAll(".page-numbers span").forEach((el, index) => {
-        el.classList.toggle("active", index === page - 1);
-    });
+function showPage(num) {
+    currentPage = num;
+
+    for (let i = 1; i <= 5; i++) {
+        document.getElementById("page" + i).style.display = "none";
+        document.getElementById("num" + i).classList.remove("active");
+    }
+
+    document.getElementById("page" + num).style.display = "block";
+    document.getElementById("num" + num).classList.add("active");
 
     window.scrollTo(0, 0);
 }
 
-function nextPage() {
-    if (currentPage < totalPages) goToPage(currentPage + 1);
-}
-
-function prevPage() {
-    if (currentPage > 1) goToPage(currentPage - 1);
-}
-
-// =========================
+// ======================
 // 画像ビューアー
-// =========================
-let imageIndex = 0;
+// ======================
+
+let currentImg = 0;
 const images = [
     "images/01.png",
     "images/02.png",
@@ -73,18 +72,18 @@ const images = [
 
 function showImage(index) {
     if (index < 0 || index >= images.length) return;
-    imageIndex = index;
-    document.getElementById("viewer-img").src = images[index];
+    currentImg = index;
+    document.getElementById("viewerImg").src = images[currentImg];
 }
 
 function nextImage() {
-    if (imageIndex < images.length - 1) {
-        showImage(imageIndex + 1);
+    if (currentImg < images.length - 1) {
+        showImage(currentImg + 1);
     }
 }
 
 function prevImage() {
-    if (imageIndex > 0) {
-        showImage(imageIndex - 1);
+    if (currentImg > 0) {
+        showImage(currentImg - 1);
     }
 }
