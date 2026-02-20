@@ -2,162 +2,21 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>画像小説ビューアー</title>
-
-<style>
-/* =========================
-   一覧表示（固定サイズ）
-========================== */
-
-.image-novel {
-    width: 800px;          /* ← 固定幅 */
-    margin: 40px auto;
-}
-
-.image-novel img {
-    width: 100%;
-    height: auto;
-    display: block;
-    cursor: pointer;
-    margin-bottom: 20px;
-}
-
-/* =========================
-   ポップアップビューアー
-========================== */
-
-.viewer-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.95);
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-.viewer-overlay.active {
-    display: flex;
-}
-
-.viewer-overlay img {
-    max-width: 90%;
-    max-height: 90%;
-}
-
-/* 閉じるボタン */
-.viewer-close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 32px;
-    color: white;
-    cursor: pointer;
-}
-
-/* 矢印ボタン */
-.viewer-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 40px;
-    color: white;
-    cursor: pointer;
-    padding: 20px;
-    user-select: none;
-}
-
-.viewer-prev { left: 20px; }
-.viewer-next { right: 20px; }
-</style>
+<title>企画</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
+<body onload="showImage(0)">
 
-<body>
+<div class="container viewer">
 
-<div class="image-novel">
-    <img src="images/01.png" loading="lazy">
-    <img src="images/02.png" loading="lazy">
-    <img src="images/03.png" loading="lazy">
-    <img src="images/04.png" loading="lazy">
+<h2>お題「甘える」　セリフ「こっちおいで」</h2>
+
+<button onclick="prevImage()">←</button>
+<img id="viewerImg">
+<button onclick="nextImage()">→</button>
+
 </div>
 
-<!-- ビューアー -->
-<div class="viewer-overlay" id="viewer">
-    <span class="viewer-close" id="closeBtn">&times;</span>
-    <span class="viewer-arrow viewer-prev" id="prevImg">←</span>
-    <img id="viewerImage">
-    <span class="viewer-arrow viewer-next" id="nextImg">→</span>
-</div>
-
-<script>
-const images = document.querySelectorAll(".image-novel img");
-const viewer = document.getElementById("viewer");
-const viewerImage = document.getElementById("viewerImage");
-const closeBtn = document.getElementById("closeBtn");
-const prevImg = document.getElementById("prevImg");
-const nextImg = document.getElementById("nextImg");
-
-let currentIndex = 0;
-
-// 開く
-images.forEach((img, index) => {
-    img.addEventListener("click", () => {
-        currentIndex = index;
-        showImage();
-        viewer.classList.add("active");
-        document.body.style.overflow = "hidden";
-    });
-});
-
-function showImage() {
-    viewerImage.src = images[currentIndex].src;
-}
-
-// 次へ
-nextImg.addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % images.length;
-    showImage();
-});
-
-// 前へ
-prevImg.addEventListener("click", () => {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    showImage();
-});
-
-// 閉じる
-closeBtn.addEventListener("click", closeViewer);
-viewer.addEventListener("click", e => {
-    if (e.target === viewer) closeViewer();
-});
-
-function closeViewer() {
-    viewer.classList.remove("active");
-    document.body.style.overflow = "";
-}
-
-// キーボード操作
-document.addEventListener("keydown", e => {
-    if (!viewer.classList.contains("active")) return;
-
-    if (e.key === "ArrowRight") nextImg.click();
-    if (e.key === "ArrowLeft") prevImg.click();
-    if (e.key === "Escape") closeViewer();
-});
-
-// スワイプ対応（スマホ）
-let startX = 0;
-viewer.addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
-});
-
-viewer.addEventListener("touchend", e => {
-    let diff = e.changedTouches[0].clientX - startX;
-    if (diff > 50) prevImg.click();
-    if (diff < -50) nextImg.click();
-});
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
