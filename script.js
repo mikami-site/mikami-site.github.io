@@ -39,7 +39,7 @@ function redrawGacha() {
 
 function checkPassword() {
     const pass = document.getElementById("password").value;
-    if (pass === "0719") {
+    if (pass === "yes") {
         location.href = "zzz-novel00.html";
     } else {
         alert("パスワードが違います");
