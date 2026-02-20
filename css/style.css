@@ -39,6 +39,23 @@ button:hover {
     background: #eee;
 }
 
+.novel-buttons {
+    display: flex;
+    gap: 10px;        /* ボタン間の余白 */
+    justify-content: center; /* 中央揃え */
+    margin: 20px 0;   /* 上下余白 */
+}
+
+.novel-btn {
+    padding: 6px 16px;    /* ボタンの大きさ */
+    font-size: 14px;      /* 文字サイズ */
+    cursor: pointer;
+    border: none;
+    background-color: #333; /* 好みで変更可能 */
+    color: white;
+    border-radius: 4px;
+}
+
 /* ヘッダー（特別小説用） */
 .header-fixed {
     position: fixed;
