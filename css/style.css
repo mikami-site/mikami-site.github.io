@@ -46,6 +46,16 @@ button:hover {
     margin: 20px 0;   /* 上下余白 */
 }
 
+.top-btn {
+    background-color: white;   /* 背景を白に */
+    color: black;              /* 文字色を黒に */
+    border: 1px solid #ccc;    /* 必要に応じて枠線を追加 */
+}
+
+.top-btn:hover {
+    background-color: #eee;    /* ホバー時の色を少し変える */
+}
+
 .novel-btn {
     padding: 6px 16px;    /* ボタンの大きさ */
     font-size: 14px;      /* 文字サイズ */
