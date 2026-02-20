@@ -1,22 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================
-       ガチャ機能
-    ========================== */
-    const gachaBtn = document.getElementById("gachaBtn");
-    if (gachaBtn) {
-        gachaBtn.addEventListener("click", () => {
-            const novels = [
-                "/novels/novel1.html",
-                "/novels/novel2.html",
-                "/novels/novel3.html",
-                "/novels/novel4.html",
-                "/novels/novel5.html"
-            ];
+ /* =========================
+   ガチャ機能（複数ボタン対応）
+========================== */
+
+const gachaBtns = document.querySelectorAll(".gachaBtn");
+
+if (gachaBtns.length > 0) {
+
+    const novels = [
+        "/novels/novel1.html",
+        "/novels/novel2.html",
+        "/novels/novel3.html",
+        "/novels/novel4.html",
+        "/novels/novel5.html"
+    ];
+
+    gachaBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
             const random = novels[Math.floor(Math.random() * novels.length)];
             location.href = random;
         });
-    }
+    });
+}
 
     /* =========================
        パスワード（Enter対応）
