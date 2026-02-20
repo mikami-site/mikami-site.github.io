@@ -26,12 +26,17 @@
 <!-- ライトボックス -->
 <div id="lightbox" class="lightbox">
 
-  <img id="lightboxImg" class="lightbox-content"
-       onclick="closeLightbox()">
+  <div class="lightbox-inner">
 
-  <div class="lightbox-controls">
-      <button id="lbPrev" onclick="prevImage()">←</button>
-      <button id="lbNext" onclick="nextImage()">→</button>
+      <img id="lightboxImg"
+           class="lightbox-content"
+           onclick="closeLightbox()">
+
+      <div class="lightbox-controls">
+          <button id="lbPrev" onclick="prevImage()">←</button>
+          <button id="lbNext" onclick="nextImage()">→</button>
+      </div>
+
   </div>
 
 </div>
