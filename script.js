@@ -101,24 +101,16 @@ function showPage(num) {
     window.scrollTo(0, 0);
 }
 
-function nextImage() {
-    if (currentImg < images.length - 1) {
-        currentImg++;
-        flashArrow("prev");  // ←矢印を表示
-        updateLightbox();
-    }
+function nextPage() {
+    showPage(currentPage + 1);
 }
 
-function prevImage() {
-    if (currentImg > 0) {
-        currentImg--;
-        flashArrow("next");  // →矢印を表示
-        updateLightbox();
-    }
+function prevPage() {
+    showPage(currentPage - 1);
 }
 
 // ======================
-// 画像ビューアー（強化版ライトボックス）
+// 画像ビューアー（ライトボックス）
 // ======================
 
 let currentImg = 0;
@@ -142,25 +134,6 @@ function closeLightbox() {
     document.getElementById("lightbox").style.display = "none";
 }
 
-// 矢印表示用
-function flashArrow(direction) {
-    const arrow = document.createElement("div");
-    arrow.textContent = direction === "next" ? "→" : "←";
-    arrow.style.position = "absolute";
-    arrow.style.fontSize = "60px";
-    arrow.style.color = "white";
-    arrow.style.top = "50%";
-    arrow.style.left = direction === "next" ? "80%" : "20%";
-    arrow.style.transform = "translate(-50%, -50%)";
-    arrow.style.opacity = "0.8";
-    arrow.style.pointerEvents = "none";
-    document.getElementById("lightbox").appendChild(arrow);
-
-    setTimeout(() => {
-        arrow.remove();
-    }, 300); // 0.3秒で消える
-}
-
 function updateLightbox() {
     const img = document.getElementById("lightboxImg");
     img.src = images[currentImg];
@@ -181,7 +154,6 @@ function updateLightbox() {
 function nextImage() {
     if (currentImg < images.length - 1) {
         currentImg++;
-        flashArrow("next");
         updateLightbox();
     }
 }
@@ -190,7 +162,6 @@ function nextImage() {
 function prevImage() {
     if (currentImg > 0) {
         currentImg--;
-        flashArrow("prev");
         updateLightbox();
     }
 }
