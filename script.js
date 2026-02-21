@@ -165,6 +165,20 @@ function prevImage() {
     }
 }
 
+function nextPrevByClick(e) {
+    const img = e.target;
+    const clickX = e.offsetX;        // クリック位置（画像内のX座標）
+    const width = img.offsetWidth;   // 画像幅
+
+    if (clickX < width / 2) {
+        // 左側クリック → 次の画像へ
+        nextImage();
+    } else {
+        // 右側クリック → 前の画像へ
+        prevImage();
+    }
+}
+
 /* ======================
    Escキーで閉じる
 ====================== */
