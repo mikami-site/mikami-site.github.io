@@ -1,5 +1,5 @@
 /* ==================================
-   Google Fonts を読み込む場合
+   Google Fonts を使用
    head 内に以下を追加してください：
    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
 ================================== */
@@ -15,6 +15,9 @@ body {
     text-align: center;
     background-color: #f8f8f8;
     color: #333;
+    line-height: 1.8;        /* 全体の行間を少し広げて読みやすく */
+    letter-spacing: 0.05em;  /* 字間を少し広め */
+    font-size: 16px;
 }
 
 /* スマホ時の左右余白 */
@@ -28,67 +31,74 @@ body {
 .novel-text {
     white-space: pre-wrap;
     text-align: left;
-    line-height: 2;
+    line-height: 2;          /* 本文の行間 */
     letter-spacing: 0.05em;
+    font-size: 16px;
 }
 
-/* ボタン */
+/* =========================
+   ボタン
+========================= */
+
 button {
-    padding: 6px 14px;
-    font-size: 14px;
+    padding: 8px 16px;
+    font-size: 15px;
     border: 1px solid #999;
     background: white;
     cursor: pointer;
-    font-family: inherit; /* 親と同じ丸ゴシックを使用 */
+    font-family: inherit;
+    border-radius: 6px;        /* 丸みを少し増やす */
+    transition: background-color 0.2s;
 }
 
 button:hover {
-    background: #eee;
+    background-color: #eee;
 }
 
-/* 小話ページボタン共通設定 */
+/* 小話ページボタン共通 */
 .novel-buttons {
-    display: flex;             /* 横並び */
-    gap: 10px;                 /* ボタン間の余白 */
-    justify-content: center;    /* 中央揃え */
-    margin: 20px 0;            /* 上下余白 */
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin: 25px 0;
 }
 
 .novel-btn {
-    padding: 8px 18px;          /* ボタンの大きさ */
-    font-size: 14px;            /* 文字サイズ */
+    padding: 10px 20px;
+    font-size: 15px;
     cursor: pointer;
     border: none;
-    background-color: #333;      /* デフォルトの背景色（再度ガチャ） */
-    color: white;               /* 文字色 */
-    border-radius: 4px;         /* 角丸 */
-    transition: background-color 0.2s;  /* ホバーで滑らかに変化 */
-    font-family: inherit;
+    background-color: #333;
+    color: white;
+    border-radius: 6px;
+    transition: background-color 0.2s;
 }
 
 .novel-btn:hover {
-    background-color: #555;      /* ホバー時の色 */
+    background-color: #555;
 }
 
 /* TOPボタンだけ色を変更 */
 .top-btn {
-    background-color: white !important;  /* 背景白 */
-    color: black !important;             /* 文字黒 */
-    border: 1px solid #ccc;              /* 枠線 */
-    font-family: inherit;
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid #ccc;
 }
 
 .top-btn:hover {
-    background-color: #eee !important;   /* ホバー時の色 */
+    background-color: #eee !important;
 }
 
-/* ヘッダー（特別小説用） */
+/* =========================
+   特別小説ヘッダー
+========================= */
+
 .header-fixed {
     position: fixed;
     top: 0;
     width: 100%;
     background: #fff;
-    padding: 10px 0;
+    padding: 12px 0;
     border-bottom: 1px solid #ccc;
     z-index: 1000;
 }
@@ -99,11 +109,13 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 /* ページ番号 */
 .page-number span {
-    margin: 0 4px;
+    margin: 0 5px;
     cursor: pointer;
     color: #aaa;
 }
@@ -115,14 +127,56 @@ button:hover {
 
 /* 特別小説本文 */
 .special-content {
-    margin-top: 100px;
+    margin-top: 120px;   /* ヘッダーと被らないように調整 */
     font-family: inherit;
+    font-size: 16px;
+    line-height: 1.9;
 }
 
-/* 画像ビューアー */
+/* =========================
+   画像ビューアー
+========================= */
+
 .viewer img {
     max-width: 100%;
     height: auto;
+    cursor: pointer;
+}
+
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.lightbox-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.lightbox img {
+    max-width: 90vw;
+    max-height: 80vh;
+}
+
+.lightbox-controls {
+    margin-top: 25px;
+}
+
+.lightbox button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 22px;
+    margin: 0 30px;
+    cursor: pointer;
+    font-family: inherit;
 }
 
 /* =========================
@@ -148,8 +202,8 @@ button:hover {
     }
 
     button {
-        font-size: 13px;
-        padding: 6px 12px;
+        font-size: 14px;
+        padding: 8px 14px;
     }
 
     .header-inner {
@@ -158,57 +212,6 @@ button:hover {
     }
 
     .special-content {
-        margin-top: 130px;
+        margin-top: 140px;
     }
-}
-
-/* =========================
-   ライトボックス
-========================= */
-
-.lightbox {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.85);
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-}
-
-.lightbox-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.lightbox img {
-    max-width: 90vw;
-    max-height: 80vh;
-}
-
-.lightbox-controls {
-    margin-top: 25px;
-}
-
-.lightbox button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 22px;
-    margin: 0 30px;
-    cursor: pointer;
-}
-
-.novel-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin: 20px 0;
-}
-
-.novel-buttons button {
-    padding: 6px 12px;
-    font-size: 14px;
-    font-family: inherit;
 }
