@@ -108,6 +108,7 @@ function nextPage() {
 function prevPage() {
     showPage(currentPage - 1);
 }
+
 // ======================
 // 画像ビューアー（強化版ライトボックス）
 // ======================
@@ -133,6 +134,25 @@ function closeLightbox() {
     document.getElementById("lightbox").style.display = "none";
 }
 
+// 矢印表示用
+function flashArrow(direction) {
+    const arrow = document.createElement("div");
+    arrow.textContent = direction === "next" ? "→" : "←";
+    arrow.style.position = "absolute";
+    arrow.style.fontSize = "60px";
+    arrow.style.color = "white";
+    arrow.style.top = "50%";
+    arrow.style.left = direction === "next" ? "80%" : "20%";
+    arrow.style.transform = "translate(-50%, -50%)";
+    arrow.style.opacity = "0.8";
+    arrow.style.pointerEvents = "none";
+    document.getElementById("lightbox").appendChild(arrow);
+
+    setTimeout(() => {
+        arrow.remove();
+    }, 300); // 0.3秒で消える
+}
+
 function updateLightbox() {
     const img = document.getElementById("lightboxImg");
     img.src = images[currentImg];
@@ -144,44 +164,48 @@ function updateLightbox() {
     lbPrev.style.display = (currentImg === images.length - 1) ? "none" : "inline";
     lbNext.style.display = (currentImg === 0) ? "none" : "inline";
 
-    // 常に統一：左で進む、右で戻る
+    // 左右ボタンの動作
     lbPrev.onclick = function() { nextImage(); };
     lbNext.onclick = function() { prevImage(); };
 }
 
-// ←で進む
+// 次の画像
 function nextImage() {
     if (currentImg < images.length - 1) {
         currentImg++;
+        flashArrow("next");
         updateLightbox();
     }
 }
 
-// →で戻る
+// 前の画像
 function prevImage() {
     if (currentImg > 0) {
         currentImg--;
+        flashArrow("prev");
         updateLightbox();
     }
 }
 
+// 左右クリックで進む/戻る
 function nextPrevByClick(e) {
     const img = e.target;
-    const clickX = e.offsetX;        // クリック位置（画像内のX座標）
-    const width = img.offsetWidth;   // 画像幅
+    const rect = img.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const width = rect.width;
 
     if (clickX < width / 2) {
-        // 左側クリック → 次の画像へ
+        // 左側クリック → 次の画像
         nextImage();
     } else {
-        // 右側クリック → 前の画像へ
+        // 右側クリック → 前の画像
         prevImage();
     }
 }
 
-/* ======================
-   Escキーで閉じる
-====================== */
+// ======================
+// Escキーで閉じる
+// ======================
 
 document.addEventListener("keydown", function(e) {
     if (e.key === "Escape") {
@@ -189,9 +213,9 @@ document.addEventListener("keydown", function(e) {
     }
 });
 
-/* ======================
-   スワイプ操作
-====================== */
+// ======================
+// スワイプ操作
+// ======================
 
 document.addEventListener("touchstart", function(e) {
     startX = e.changedTouches[0].screenX;
