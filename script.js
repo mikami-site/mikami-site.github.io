@@ -101,12 +101,20 @@ function showPage(num) {
     window.scrollTo(0, 0);
 }
 
-function nextPage() {
-    showPage(currentPage + 1);
+function nextImage() {
+    if (currentImg < images.length - 1) {
+        currentImg++;
+        flashArrow("prev");  // ←矢印を表示
+        updateLightbox();
+    }
 }
 
-function prevPage() {
-    showPage(currentPage - 1);
+function prevImage() {
+    if (currentImg > 0) {
+        currentImg--;
+        flashArrow("next");  // →矢印を表示
+        updateLightbox();
+    }
 }
 
 // ======================
