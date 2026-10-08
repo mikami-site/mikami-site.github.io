@@ -4,28 +4,47 @@
 
 const authors = {
 
+
   author01: {
     name: "書き手A",
-    sns: "https://x.com/authorA"
+
+    sns: [
+      {
+        name: "X",
+        url: "https://x.com/authorA"
+      },
+      {
+        name: "ブルスカ",
+        url: "https://bsky.app/profile/authorA.bsky.social"
+      }
+    ]
   },
+
 
   author02: {
     name: "書き手B",
-    sns: "https://x.com/authorB"
+
+    sns: [
+      {
+        name: "X",
+        url: "https://x.com/authorB"
+      }
+    ]
   },
+
 
   author03: {
     name: "書き手C",
-    sns: "https://x.com/authorC"
-  },
 
-  author04: {
-    name: "書き手D",
-    sns: "https://x.com/authorD"
+    sns: [
+      {
+        name: "ブルスカ",
+        url: "https://bsky.app/profile/authorC.bsky.social"
+      }
+    ]
   }
 
 };
-
 
 // ========================================
 // 小話一覧
