@@ -4,7 +4,6 @@
 
 const authors = {
 
-
   author01: {
     name: "書き手A",
 
@@ -14,7 +13,7 @@ const authors = {
         url: "https://x.com/authorA"
       },
       {
-        name: "ブルスカ",
+        name: "bsky",
         url: "https://bsky.app/profile/authorA.bsky.social"
       }
     ]
@@ -38,7 +37,7 @@ const authors = {
 
     sns: [
       {
-        name: "ブルスカ",
+        name: "bsky",
         url: "https://bsky.app/profile/authorC.bsky.social"
       }
     ]
