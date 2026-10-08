@@ -1,119 +1,81 @@
-// URLから作品IDを取得
-const params = new URLSearchParams(
-  window.location.search
-);
+<!DOCTYPE html>
+<html lang="ja">
 
-const storyId = params.get("id");
+<head>
+  <meta charset="UTF-8">
 
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-// IDに一致する作品を探す
-const story = stories.find(
-  item => item.id === storyId
-);
+  <title>SSガチャ</title>
 
-
-// 作品が見つからなかった場合
-if (!story) {
-
-  document.querySelector(".story").innerHTML = `
-    <p>
-      作品が見つかりませんでした。
-    </p>
-
-    <p>
-      <a href="index.html">
-        ガチャへ戻る
-      </a>
-    </p>
-  `;
-
-}
+  <link rel="stylesheet"
+        href="css/style.css">
+</head>
 
 
-// 作品が見つかった場合
-else {
+<body>
 
-  const author = authors[story.author];
+  <main class="container">
 
+    <article class="story">
 
-  // ブラウザのタブタイトル
-  document.title =
-    `${story.title} | SSガチャ`;
+      <header class="story-header">
 
-
-  // 作品タイトル
-  document.getElementById(
-    "story-title"
-  ).textContent = story.title;
+        <h1 id="story-title"></h1>
 
 
-  // テーマ
-  document.getElementById(
-    "story-theme"
-  ).textContent = story.theme;
+        <dl class="story-info">
+
+          <div>
+            <dt>Theme</dt>
+            <dd id="story-theme"></dd>
+          </div>
+
+          <div>
+            <dt>Writer</dt>
+
+            <dd>
+              <a id="story-author"
+                 href=""
+                 target="_blank"
+                 rel="noopener noreferrer">
+              </a>
+            </dd>
+
+          </div>
+
+        </dl>
+
+      </header>
 
 
-  // 書き手
-  const authorLink =
-    document.getElementById(
-      "story-author"
-    );
-
-  authorLink.textContent =
-    author.name;
-
-  authorLink.href =
-    author.sns;
+      <section
+        id="story-body"
+        class="story-body">
+      </section>
 
 
-  // 本文
-  document.getElementById(
-    "story-body"
-  ).innerHTML = story.body;
+      <footer class="story-footer">
 
-}
+        <button
+          id="retry-button"
+          class="gacha-button">
 
+          もう一度引く
 
-// ==============================
-// 「もう一度引く」ボタン
-// ==============================
+        </button>
 
-const retryButton =
-  document.getElementById(
-    "retry-button"
-  );
+      </footer>
 
+    </article>
 
-if (retryButton) {
-
-  retryButton.addEventListener(
-    "click",
-    function () {
-
-      // 現在表示している作品を除外
-      const otherStories =
-        stories.filter(
-          item => item.id !== storyId
-        );
+  </main>
 
 
-      // 残った作品からランダム抽選
-      const randomIndex =
-        Math.floor(
-          Math.random()
-          * otherStories.length
-        );
+  <script src="js/data.js"></script>
+  <script src="js/story.js"></script>
 
+</body>
 
-      const selectedStory =
-        otherStories[randomIndex];
-
-
-      // 新しい作品へ移動
-      window.location.href =
-        `story.html?id=${selectedStory.id}`;
-
-    }
-  );
-
-}
+</html>
